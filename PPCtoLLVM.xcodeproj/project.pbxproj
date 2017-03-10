@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		C1CC0AA01E7366A900BAECB3 /* keystone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = keystone; sourceTree = "<group>"; };
 		C1CC0AA11E7366C500BAECB3 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -23,7 +22,6 @@
 		C1CC06C31E73668600BAECB3 /* tests */ = {
 			isa = PBXGroup;
 			children = (
-				C1CC0AA01E7366A900BAECB3 /* keystone */,
 				C1CC0AA11E7366C500BAECB3 /* Makefile */,
 			);
 			path = tests;
