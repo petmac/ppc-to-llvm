@@ -1,11 +1,13 @@
-KSBUILDDIR := keystone/build
-KSTOOL := $(KSBUILDDIR)/kstool/kstool
+TESTS := blr
+BIN_FILES := $(foreach test,$(TESTS),$(test).bin)
 
-all: $(KSTOOL)
+all: $(BIN_FILES)
 
 clean:
-	rm -rf $(KSBUILDDIR)
+	rm -f $(BIN_FILES)
 
-$(KSTOOL):
-	mkdir -p $(KSBUILDDIR)
-	cd $(KSBUILDDIR) && ../make-share.sh
+%.o: %.s
+	/usr/local/opt/llvm/bin/llvm-mc -arch ppc64 -filetype obj $< -o $@
+
+%.bin: %.o
+	gobjcopy --strip-all --output-target binary $< $@
