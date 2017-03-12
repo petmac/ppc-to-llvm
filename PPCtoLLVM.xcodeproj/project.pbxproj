@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C1BF1ABE1E7528C400F766EA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1ABD1E7528C400F766EA /* main.cpp */; };
+		C1BF1AC31E752A7600F766EA /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1AC21E752A7600F766EA /* gtest-all.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +27,7 @@
 		C1BF1AB51E75283B00F766EA /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		C1BF1ABA1E7528C400F766EA /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BF1ABD1E7528C400F766EA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C1BF1AC21E752A7600F766EA /* gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "gtest-all.cc"; path = "googletest/googletest/src/gtest-all.cc"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				C1BF1AB51E75283B00F766EA /* data */,
+				C1BF1AC21E752A7600F766EA /* gtest-all.cc */,
 				C1BF1ABD1E7528C400F766EA /* main.cpp */,
 			);
 			path = tests;
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1BF1ABE1E7528C400F766EA /* main.cpp in Sources */,
+				C1BF1AC31E752A7600F766EA /* gtest-all.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +199,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/tests/googletest/googletest/include ${PROJECT_DIR}/tests/googletest/googletest ${inherited}";
 			};
 			name = Debug;
 		};
@@ -236,6 +241,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/tests/googletest/googletest/include ${PROJECT_DIR}/tests/googletest/googletest ${inherited}";
 			};
 			name = Release;
 		};
