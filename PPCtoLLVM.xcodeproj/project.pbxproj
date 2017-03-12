@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		C1CC0AA11E7366C500BAECB3 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		C1CC0AA21E736EFB00BAECB3 /* blr.s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = blr.s; sourceTree = "<group>"; };
-		C1CC0AA41E73768300BAECB3 /* blr.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = blr.bin; sourceTree = "<group>"; };
+		C1BF1AB51E75283B00F766EA /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -24,9 +22,7 @@
 		C1CC06C31E73668600BAECB3 /* tests */ = {
 			isa = PBXGroup;
 			children = (
-				C1CC0AA41E73768300BAECB3 /* blr.bin */,
-				C1CC0AA21E736EFB00BAECB3 /* blr.s */,
-				C1CC0AA11E7366C500BAECB3 /* Makefile */,
+				C1BF1AB51E75283B00F766EA /* data */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -34,17 +30,17 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		C1CC06BF1E73666B00BAECB3 /* tests */ = {
+		C1CC06BF1E73666B00BAECB3 /* test-data */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = C1CC06C21E73666C00BAECB3 /* Build configuration list for PBXLegacyTarget "tests" */;
+			buildConfigurationList = C1CC06C21E73666C00BAECB3 /* Build configuration list for PBXLegacyTarget "test-data" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = tests;
+			buildWorkingDirectory = tests/data;
 			dependencies = (
 			);
-			name = tests;
+			name = "test-data";
 			passBuildSettingsInEnvironment = 1;
 			productName = tests;
 		};
@@ -73,7 +69,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C1CC06BF1E73666B00BAECB3 /* tests */,
+				C1CC06BF1E73666B00BAECB3 /* test-data */,
 			);
 		};
 /* End PBXProject section */
@@ -192,7 +188,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1CC06C21E73666C00BAECB3 /* Build configuration list for PBXLegacyTarget "tests" */ = {
+		C1CC06C21E73666C00BAECB3 /* Build configuration list for PBXLegacyTarget "test-data" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1CC06C01E73666C00BAECB3 /* Debug */,
