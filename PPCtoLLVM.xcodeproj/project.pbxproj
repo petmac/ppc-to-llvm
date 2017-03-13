@@ -425,12 +425,16 @@
 		C1CC06BD1E7364E800BAECB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/translation/include ${inherited}";
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
 		C1CC06BE1E7364E800BAECB3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/translation/include ${inherited}";
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
