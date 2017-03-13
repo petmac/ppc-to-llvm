@@ -59,7 +59,9 @@ protected:
 };
 
 TEST_P(Translation, matches_expected) {
-//	std::cout << binary.data();
+	const std::string translated = "TODO TRANSLATE";
+	
+	EXPECT_EQ(translated, expected_ll);
 }
 
 INSTANTIATE_TEST_CASE_P(, Translation, testing::Values("blr"));
