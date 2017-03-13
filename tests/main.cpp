@@ -1,9 +1,8 @@
+#include "translation.h"
+
 #include "gtest/gtest.h"
 
 #include <fstream>
-#include <stdexcept>
-#include <string>
-#include <vector>
 
 static std::vector<char> load_binary_file(const char *path) {
 	std::ifstream file(path, std::ios::binary);
@@ -59,7 +58,7 @@ protected:
 };
 
 TEST_P(Translation, matches_expected) {
-	const std::string translated = "TODO TRANSLATE";
+	const std::string translated = translate(binary.data(), binary.size());
 	
 	EXPECT_EQ(translated, expected_ll);
 }
