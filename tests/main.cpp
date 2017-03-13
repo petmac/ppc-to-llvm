@@ -21,6 +21,18 @@ static std::vector<char> load_binary_file(const char *path) {
 	return buffer;
 }
 
+static std::string load_text_file(const char *path) {
+	std::ifstream file(path);
+	if (file.fail()) {
+		throw std::runtime_error("File open failed.");
+	}
+	
+	std::stringstream buffer;
+	buffer << file.rdbuf();
+	
+	return buffer.str();
+}
+
 class Translation : public testing::TestWithParam<const char *> {
 public:
 	
@@ -37,11 +49,13 @@ public:
 		expected_ll_path.append(".ll");
 		
 		binary = load_binary_file(binary_path.c_str());
+		expected_ll = load_text_file(expected_ll_path.c_str());
 	}
 	
 protected:
 	
 	std::vector<char> binary;
+	std::string expected_ll;
 };
 
 TEST_P(Translation, matches_expected) {
