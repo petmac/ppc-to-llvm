@@ -17,6 +17,16 @@
 		C1BF1D3F1E7879A900F766EA /* translation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1D3E1E7879A900F766EA /* translation.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C1BF1D401E787A4500F766EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1CC06B91E7364E800BAECB3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1CC06BF1E73666B00BAECB3;
+			remoteInfo = "test-data";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		C1BF1AB81E7528C400F766EA /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -169,6 +179,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C1BF1D411E787A4500F766EA /* PBXTargetDependency */,
 			);
 			name = tests;
 			productName = tests;
@@ -254,6 +265,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C1BF1D411E787A4500F766EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1CC06BF1E73666B00BAECB3 /* test-data */;
+			targetProxy = C1BF1D401E787A4500F766EA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C1BF1AC01E7528C400F766EA /* Debug */ = {
