@@ -32,7 +32,7 @@
 		C1BF1AB51E75283B00F766EA /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		C1BF1ABA1E7528C400F766EA /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BF1ABD1E7528C400F766EA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		C1BF1AC21E752A7600F766EA /* gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "gtest-all.cc"; path = "googletest/googletest/src/gtest-all.cc"; sourceTree = "<group>"; };
+		C1BF1AC21E752A7600F766EA /* gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "gtest-all.cc"; path = "googletest/src/gtest-all.cc"; sourceTree = "<group>"; };
 		C1BF1AC81E768E2500F766EA /* libtranslation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtranslation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BF1AD41E768EB700F766EA /* translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = translation.h; sourceTree = "<group>"; };
 		C1BF1AD61E768EB700F766EA /* translation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = translation.cpp; sourceTree = "<group>"; };
@@ -95,9 +95,18 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		C1BF1ADE1E78781A00F766EA /* googletest */ = {
+			isa = PBXGroup;
+			children = (
+				C1BF1AC21E752A7600F766EA /* gtest-all.cc */,
+			);
+			path = googletest;
+			sourceTree = "<group>";
+		};
 		C1CC06B81E7364E800BAECB3 = {
 			isa = PBXGroup;
 			children = (
+				C1BF1ADE1E78781A00F766EA /* googletest */,
 				C1CC06C31E73668600BAECB3 /* tests */,
 				C1BF1AC91E768E2500F766EA /* translation */,
 				C1BF1ABB1E7528C400F766EA /* Products */,
@@ -109,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				C1BF1AB51E75283B00F766EA /* data */,
-				C1BF1AC21E752A7600F766EA /* gtest-all.cc */,
 				C1BF1ABD1E7528C400F766EA /* main.cpp */,
 			);
 			path = tests;
@@ -293,7 +301,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/tests/googletest/googletest/include ${PROJECT_DIR}/tests/googletest/googletest ${inherited}";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/googletest/googletest/include ${PROJECT_DIR}/googletest/googletest ${inherited}";
 			};
 			name = Debug;
 		};
@@ -339,7 +347,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/tests/googletest/googletest/include ${PROJECT_DIR}/tests/googletest/googletest ${inherited}";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/googletest/googletest/include ${PROJECT_DIR}/googletest/googletest ${inherited}";
 			};
 			name = Release;
 		};
