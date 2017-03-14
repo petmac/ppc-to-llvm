@@ -2,4 +2,4 @@
 
 #include <string>
 
-std::string translate(const void *binary, size_t binary_size);
+std::string translate(const void *binary, size_t binary_size, uint64_t address);

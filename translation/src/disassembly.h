@@ -13,4 +13,4 @@ struct Disassembly {
 	size_t insn_count = 0;
 };
 
-Disassembly disassemble(const void *binary, size_t binary_size);
+Disassembly disassemble(const void *binary, size_t binary_size, uint64_t address);

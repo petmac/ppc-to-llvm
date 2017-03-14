@@ -9,7 +9,7 @@ static void close_capstone(csh *csp) {
 	delete csp;
 }
 
-Disassembly disassemble(const void *binary, size_t binary_size) {
+Disassembly disassemble(const void *binary, size_t binary_size, uint64_t address) {
 	const Capstone cs(new csh(0), &close_capstone);
 	const cs_mode mode = static_cast<cs_mode>(CS_MODE_64 | CS_MODE_BIG_ENDIAN);
 	const cs_err err = cs_open(CS_ARCH_PPC, mode, cs.get());
@@ -17,7 +17,6 @@ Disassembly disassemble(const void *binary, size_t binary_size) {
 		return Disassembly();
 	}
 	
-	const uint64_t address = 0x8000000; // TODO Pass load address.
 	cs_insn *unsafe_insn = nullptr;
 	const size_t insn_count = cs_disasm(*cs, static_cast<const uint8_t *>(binary), binary_size, address, 0, &unsafe_insn);
 	const std::function<void(cs_insn *)> free_instructions = [insn_count](cs_insn *insn) {

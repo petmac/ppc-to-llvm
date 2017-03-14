@@ -58,7 +58,8 @@ protected:
 };
 
 TEST_P(Translation, matches_expected) {
-	const std::string translated = translate(binary.data(), binary.size());
+	const uint64_t address = 0x80000000; // TODO Get this from somewhere.
+	const std::string translated = translate(binary.data(), binary.size(), address);
 	
 	EXPECT_EQ(translated, expected_ll);
 }
