@@ -289,10 +289,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C1CC06BF1E73666B00BAECB3 /* translation-test-data */,
 				C1BF1AB91E7528C400F766EA /* tests */,
-				C1BF1AC71E768E2500F766EA /* translation */,
 				C1BF1D451E787C7000F766EA /* translate */,
+				C1BF1AC71E768E2500F766EA /* translation */,
+				C1CC06BF1E73666B00BAECB3 /* translation-test-data */,
 			);
 		};
 /* End PBXProject section */
