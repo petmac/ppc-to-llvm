@@ -37,7 +37,7 @@ public:
 	
 	virtual void SetUp() {
 		const char *const data_name = GetParam();
-		const char *const data_root = "data/";
+		const char *const data_root = "data/translation/";
 		std::string data_base_path(data_root);
 		data_base_path.append(data_name);
 		

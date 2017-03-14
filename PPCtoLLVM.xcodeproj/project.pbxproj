@@ -158,7 +158,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = tests/data;
+			buildWorkingDirectory = tests/data/translation;
 			dependencies = (
 			);
 			name = "test-data";
