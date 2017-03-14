@@ -14,6 +14,7 @@
 		C1BF1AD91E7712CA00F766EA /* libtranslation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BF1AC81E768E2500F766EA /* libtranslation.a */; };
 		C1BF1ADC1E771B5B00F766EA /* disassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1ADA1E771B5B00F766EA /* disassembly.cpp */; };
 		C1BF1ADD1E771B5B00F766EA /* disassembly.h in Headers */ = {isa = PBXBuildFile; fileRef = C1BF1ADB1E771B5B00F766EA /* disassembly.h */; };
+		C1BF1D3F1E7879A900F766EA /* translation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1D3E1E7879A900F766EA /* translation.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +39,7 @@
 		C1BF1AD61E768EB700F766EA /* translation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = translation.cpp; sourceTree = "<group>"; };
 		C1BF1ADA1E771B5B00F766EA /* disassembly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = disassembly.cpp; sourceTree = "<group>"; };
 		C1BF1ADB1E771B5B00F766EA /* disassembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = disassembly.h; sourceTree = "<group>"; };
+		C1BF1D3E1E7879A900F766EA /* translation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = translation.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			children = (
 				C1BF1AB51E75283B00F766EA /* data */,
 				C1BF1ABD1E7528C400F766EA /* main.cpp */,
+				C1BF1D3E1E7879A900F766EA /* translation.cpp */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1BF1ABE1E7528C400F766EA /* main.cpp in Sources */,
+				C1BF1D3F1E7879A900F766EA /* translation.cpp in Sources */,
 				C1BF1AC31E752A7600F766EA /* gtest-all.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
