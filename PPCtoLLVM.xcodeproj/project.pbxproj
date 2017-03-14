@@ -12,6 +12,8 @@
 		C1BF1AD71E768EB700F766EA /* translation.h in Headers */ = {isa = PBXBuildFile; fileRef = C1BF1AD41E768EB700F766EA /* translation.h */; };
 		C1BF1AD81E768EB700F766EA /* translation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1AD61E768EB700F766EA /* translation.cpp */; };
 		C1BF1AD91E7712CA00F766EA /* libtranslation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BF1AC81E768E2500F766EA /* libtranslation.a */; };
+		C1BF1ADC1E771B5B00F766EA /* disassembly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1ADA1E771B5B00F766EA /* disassembly.cpp */; };
+		C1BF1ADD1E771B5B00F766EA /* disassembly.h in Headers */ = {isa = PBXBuildFile; fileRef = C1BF1ADB1E771B5B00F766EA /* disassembly.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +36,8 @@
 		C1BF1AC81E768E2500F766EA /* libtranslation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtranslation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BF1AD41E768EB700F766EA /* translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = translation.h; sourceTree = "<group>"; };
 		C1BF1AD61E768EB700F766EA /* translation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = translation.cpp; sourceTree = "<group>"; };
+		C1BF1ADA1E771B5B00F766EA /* disassembly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = disassembly.cpp; sourceTree = "<group>"; };
+		C1BF1ADB1E771B5B00F766EA /* disassembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = disassembly.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 		C1BF1AD51E768EB700F766EA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C1BF1ADA1E771B5B00F766EA /* disassembly.cpp */,
+				C1BF1ADB1E771B5B00F766EA /* disassembly.h */,
 				C1BF1AD61E768EB700F766EA /* translation.cpp */,
 			);
 			path = src;
@@ -117,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1BF1AD71E768EB700F766EA /* translation.h in Headers */,
+				C1BF1ADD1E771B5B00F766EA /* disassembly.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1BF1ADC1E771B5B00F766EA /* disassembly.cpp in Sources */,
 				C1BF1AD81E768EB700F766EA /* translation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,6 +287,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lcapstone",
+					"${inherited}",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/tests/googletest/googletest/include ${PROJECT_DIR}/tests/googletest/googletest ${inherited}";
@@ -321,6 +333,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-lcapstone",
+					"${inherited}",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/tests/googletest/googletest/include ${PROJECT_DIR}/tests/googletest/googletest ${inherited}";
@@ -425,6 +441,14 @@
 		C1CC06BD1E7364E800BAECB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/usr/local/opt/capstone/include,
+					"${inherited}",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/opt/capstone/lib,
+					"${inherited}",
+				);
 				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/translation/include ${inherited}";
 				USE_HEADERMAP = NO;
 			};
@@ -433,6 +457,14 @@
 		C1CC06BE1E7364E800BAECB3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/usr/local/opt/capstone/include,
+					"${inherited}",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/opt/capstone/lib,
+					"${inherited}",
+				);
 				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/translation/include ${inherited}";
 				USE_HEADERMAP = NO;
 			};
