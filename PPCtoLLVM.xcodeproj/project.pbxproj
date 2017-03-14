@@ -16,6 +16,7 @@
 		C1BF1ADD1E771B5B00F766EA /* disassembly.h in Headers */ = {isa = PBXBuildFile; fileRef = C1BF1ADB1E771B5B00F766EA /* disassembly.h */; };
 		C1BF1D3F1E7879A900F766EA /* translation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1D3E1E7879A900F766EA /* translation.cpp */; };
 		C1BF1D491E787C7000F766EA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1D481E787C7000F766EA /* main.cpp */; };
+		C1BF1D4D1E787D4400F766EA /* libtranslation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BF1AC81E768E2500F766EA /* libtranslation.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1BF1D4D1E787D4400F766EA /* libtranslation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +573,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lcapstone",
+					"${inherited}",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -612,6 +618,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-lcapstone",
+					"${inherited}",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
