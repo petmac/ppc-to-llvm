@@ -151,17 +151,17 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
-		C1CC06BF1E73666B00BAECB3 /* test-data */ = {
+		C1CC06BF1E73666B00BAECB3 /* translation-test-data */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = C1CC06C21E73666C00BAECB3 /* Build configuration list for PBXLegacyTarget "test-data" */;
+			buildConfigurationList = C1CC06C21E73666C00BAECB3 /* Build configuration list for PBXLegacyTarget "translation-test-data" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = tests/data/translation;
 			dependencies = (
 			);
-			name = "test-data";
+			name = "translation-test-data";
 			passBuildSettingsInEnvironment = 1;
 			productName = tests;
 		};
@@ -237,7 +237,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C1CC06BF1E73666B00BAECB3 /* test-data */,
+				C1CC06BF1E73666B00BAECB3 /* translation-test-data */,
 				C1BF1AB91E7528C400F766EA /* tests */,
 				C1BF1AC71E768E2500F766EA /* translation */,
 			);
@@ -269,7 +269,7 @@
 /* Begin PBXTargetDependency section */
 		C1BF1D411E787A4500F766EA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C1CC06BF1E73666B00BAECB3 /* test-data */;
+			target = C1CC06BF1E73666B00BAECB3 /* translation-test-data */;
 			targetProxy = C1BF1D401E787A4500F766EA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -618,7 +618,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1CC06C21E73666C00BAECB3 /* Build configuration list for PBXLegacyTarget "test-data" */ = {
+		C1CC06C21E73666C00BAECB3 /* Build configuration list for PBXLegacyTarget "translation-test-data" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1CC06C01E73666C00BAECB3 /* Debug */,
