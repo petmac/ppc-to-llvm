@@ -34,13 +34,21 @@ int main(int argc, const char *argv[]) {
 	const uint64_t address = 0x80000000;
 	const std::string translation = translate(binary.data(), binary.size(), address);
 	
-	std::ofstream destination(argv[2]);
-	if (destination.fail()) {
+	std::ofstream out(argv[2]);
+	if (out.fail()) {
 		std::cerr << "Failed to open output file." << std::endl;
 		return 1;
 	}
 	
-	destination << translation;
+	out << "define internal void @run(i64 %address) {" << std::endl;
+	out << translation;
+	out << "\tret void" << std::endl;
+	out << "}" << std::endl;
+	out << std::endl;
+	out << "define i32 @main() {" << std::endl;
+	out << "\tcall void @run(i64 " << address << ")" << std::endl;
+	out << "\tret i32 0" << std::endl;
+	out << "}" << std::endl;
 	
 	return 0;
 }
