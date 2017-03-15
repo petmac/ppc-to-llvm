@@ -2,6 +2,8 @@ TESTS := empty
 ELF_FILES := $(foreach test,$(TESTS),$(test).elf)
 TRANSLATE := $(BUILT_PRODUCTS_DIR)/translate
 
+.SECONDARY: $(foreach test,$(TESTS),$(test).ll)
+
 all: $(ELF_FILES)
 
 clean:
