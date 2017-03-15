@@ -1,2 +1,3 @@
 xcuserdata/
+tests/data/compilation/*.elf
 tests/data/translation/*.bin
