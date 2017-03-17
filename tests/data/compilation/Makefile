@@ -1,22 +1,22 @@
 TESTS := empty simple
-ELF_FILES := $(foreach test,$(TESTS),$(test).elf)
+O_FILES := $(foreach test,$(TESTS),$(test).o)
 TRANSLATE := $(BUILT_PRODUCTS_DIR)/translate
 
 .SECONDARY: $(foreach test,$(TESTS),$(test).ll)
 
-all: $(ELF_FILES)
+all: $(O_FILES)
 
 clean:
-	rm -f $(ELF_FILES)
+	rm -f $(O_FILES)
 
-%.o: %.s
+%-ppc.o: %.s
 	/usr/local/opt/llvm/bin/llvm-mc -arch ppc64 -filetype obj $< -o $@
 
-%.bin: %.o
+%.bin: %-ppc.o
 	gobjcopy --strip-all --output-target binary $< $@
 
 %.ll: %.bin $(TRANSLATE)
 	$(TRANSLATE) $< $@
 
-%.elf: %.ll
-	clang -g -o $@ $<
+%.o: %.ll
+	clang -c -g -o $@ $<

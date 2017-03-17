@@ -1,5 +1,4 @@
 xcuserdata/
-tests/data/compilation/*.elf
-tests/data/compilation/*.elf.dSYM/
+tests/data/compilation/*.o
 tests/data/compilation/*.ll
 tests/data/translation/*.bin
