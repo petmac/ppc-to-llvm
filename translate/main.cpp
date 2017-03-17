@@ -40,8 +40,11 @@ int main(int argc, const char *argv[]) {
 		return 1;
 	}
 	
+	out << "declare void @llvm.debugtrap() nounwind" << std::endl;
+	out << std::endl;
 	out << "define internal void @run(i64 %address) {" << std::endl;
 	out << translation;
+	out << "\tcall void @llvm.debugtrap()" << std::endl;
 	out << "\tret void" << std::endl;
 	out << "}" << std::endl;
 	out << std::endl;
