@@ -19,4 +19,4 @@ clean:
 	$(TRANSLATE) $< $@
 
 %.elf: %.ll
-	clang -o $@ $<
+	clang -g -o $@ $<
