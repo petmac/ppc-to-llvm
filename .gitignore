@@ -1,4 +1,3 @@
 xcuserdata/
-/compilation-tests/*.ll
-/compilation-tests/*.o
+/build/
 /tests/data/translation/*.bin
