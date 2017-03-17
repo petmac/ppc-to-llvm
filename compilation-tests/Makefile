@@ -18,4 +18,4 @@ clean:
 	$(TRANSLATE) $< $@
 
 %.o: %.ll
-	clang -c -g -Wno-override-module -o $@ $<
+	clang -c -g -Wno-override-module -mmacosx-version-min=10.11 -o $@ $<
