@@ -1,4 +1,4 @@
 xcuserdata/
-tests/data/compilation/*.o
-tests/data/compilation/*.ll
-tests/data/translation/*.bin
+/compilation-tests/*.ll
+/compilation-tests/*.o
+/tests/data/translation/*.bin

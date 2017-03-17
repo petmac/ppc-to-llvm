@@ -143,8 +143,7 @@
 				B2A620231E7BC4230083D7DB /* simple.o */,
 				B2A620241E7BC4230083D7DB /* simple.s */,
 			);
-			name = "compilation-tests";
-			path = tests/data/compilation;
+			path = "compilation-tests";
 			sourceTree = "<group>";
 		};
 		C1BF1ABB1E7528C400F766EA /* Products */ = {
@@ -246,7 +245,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = tests/data/compilation;
+			buildWorkingDirectory = "compilation-tests";
 			dependencies = (
 				B2E29F371E79708400ECD7C6 /* PBXTargetDependency */,
 			);
