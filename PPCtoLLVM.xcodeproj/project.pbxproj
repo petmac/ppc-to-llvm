@@ -278,8 +278,8 @@
 				B2A6201D1E7BC4230083D7DB /* compilation-tests */,
 				C1BF1ADE1E78781A00F766EA /* googletest */,
 				C1CC06C31E73668600BAECB3 /* tests */,
-				C1BF1AC91E768E2500F766EA /* translation */,
 				C1BF1D471E787C7000F766EA /* translate */,
+				C1BF1AC91E768E2500F766EA /* translation */,
 				C1BF1ABB1E7528C400F766EA /* Products */,
 			);
 			sourceTree = "<group>";
