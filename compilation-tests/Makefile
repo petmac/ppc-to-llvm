@@ -18,4 +18,4 @@ clean:
 	$(TRANSLATE) $< $@
 
 %.o: %.ll
-	clang -c -g -o $@ $<
+	clang -c -g -Wno-override-module -o $@ $<
