@@ -6,6 +6,23 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B27CB14A1E7BC98A0079B886 /* all-tests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B27CB14B1E7BC98A0079B886 /* Build configuration list for PBXAggregateTarget "all-tests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				B27CB14F1E7BC9A40079B886 /* PBXTargetDependency */,
+				B27CB1511E7BC9A40079B886 /* PBXTargetDependency */,
+				B27CB1531E7BC9A40079B886 /* PBXTargetDependency */,
+				B27CB1551E7BC9A40079B886 /* PBXTargetDependency */,
+			);
+			name = "all-tests";
+			productName = "all-tests";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B27CB1471E7BC8CB0079B886 /* empty.o in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A6201F1E7BC4230083D7DB /* empty.o */; };
 		B2A620251E7BC4520083D7DB /* simple.o in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A620231E7BC4230083D7DB /* simple.o */; };
@@ -28,6 +45,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = C1BF1D4E1E78818500F766EA;
 			remoteInfo = "compilation-tests";
+		};
+		B27CB14E1E7BC9A40079B886 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1CC06B91E7364E800BAECB3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1BF1D4E1E78818500F766EA;
+			remoteInfo = "compilation-tests";
+		};
+		B27CB1501E7BC9A40079B886 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1CC06B91E7364E800BAECB3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B27CB13F1E7BC8B90079B886;
+			remoteInfo = empty;
+		};
+		B27CB1521E7BC9A40079B886 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1CC06B91E7364E800BAECB3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B2D97C8D1E7BC29300C42674;
+			remoteInfo = simple;
+		};
+		B27CB1541E7BC9A40079B886 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1CC06B91E7364E800BAECB3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1BF1AB91E7528C400F766EA;
+			remoteInfo = tests;
 		};
 		B2D97C981E7BC3C500C42674 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -397,6 +442,10 @@
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 					};
+					B27CB14A1E7BC98A0079B886 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					B2D97C8D1E7BC29300C42674 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -435,6 +484,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				B27CB14A1E7BC98A0079B886 /* all-tests */,
 				C1BF1D4E1E78818500F766EA /* compilation-tests */,
 				B27CB13F1E7BC8B90079B886 /* empty */,
 				B2D97C8D1E7BC29300C42674 /* simple */,
@@ -495,6 +545,26 @@
 			isa = PBXTargetDependency;
 			target = C1BF1D4E1E78818500F766EA /* compilation-tests */;
 			targetProxy = B27CB1481E7BC8F20079B886 /* PBXContainerItemProxy */;
+		};
+		B27CB14F1E7BC9A40079B886 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1BF1D4E1E78818500F766EA /* compilation-tests */;
+			targetProxy = B27CB14E1E7BC9A40079B886 /* PBXContainerItemProxy */;
+		};
+		B27CB1511E7BC9A40079B886 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B27CB13F1E7BC8B90079B886 /* empty */;
+			targetProxy = B27CB1501E7BC9A40079B886 /* PBXContainerItemProxy */;
+		};
+		B27CB1531E7BC9A40079B886 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B2D97C8D1E7BC29300C42674 /* simple */;
+			targetProxy = B27CB1521E7BC9A40079B886 /* PBXContainerItemProxy */;
+		};
+		B27CB1551E7BC9A40079B886 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1BF1AB91E7528C400F766EA /* tests */;
+			targetProxy = B27CB1541E7BC9A40079B886 /* PBXContainerItemProxy */;
 		};
 		B2D97C991E7BC3C500C42674 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -600,6 +670,20 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B27CB14C1E7BC98A0079B886 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B27CB14D1E7BC98A0079B886 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1201,6 +1285,14 @@
 			buildConfigurations = (
 				B27CB1441E7BC8B90079B886 /* Debug */,
 				B27CB1451E7BC8B90079B886 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B27CB14B1E7BC98A0079B886 /* Build configuration list for PBXAggregateTarget "all-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B27CB14C1E7BC98A0079B886 /* Debug */,
+				B27CB14D1E7BC98A0079B886 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
