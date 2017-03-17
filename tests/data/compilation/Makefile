@@ -1,4 +1,4 @@
-TESTS := empty
+TESTS := empty simple
 ELF_FILES := $(foreach test,$(TESTS),$(test).elf)
 TRANSLATE := $(BUILT_PRODUCTS_DIR)/translate
 
