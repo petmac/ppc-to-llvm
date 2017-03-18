@@ -11,7 +11,7 @@ add_library(translation translation/src/disassembly.cpp translation/src/translat
 add_executable(tests tests/main.cpp tests/translation.cpp googletest/googletest/src/gtest-all.cc)
 target_link_libraries(tests translation capstone)
 
-set(TRANSLATION_TEST_DATA_DIR ${CMAKE_SOURCE_DIR}/tests/data/translation)
+set(TRANSLATION_TEST_DATA_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tests/data/translation)
 
 foreach(test blr)
 add_custom_target(${test}_bin DEPENDS ${TRANSLATION_TEST_DATA_DIR}/${test}.bin)
