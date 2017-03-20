@@ -1,0 +1,4 @@
+language: c++
+os: osx
+before_install: brew install binutils capstone llvm
+script: mkdir -p build && cd build && cmake .. && make
