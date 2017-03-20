@@ -1,4 +1,4 @@
-#include "translation.h"
+#include "ppc-to-llvm/translation.h"
 
 #include "disassembly.h"
 

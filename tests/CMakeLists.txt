@@ -9,7 +9,7 @@ add_custom_command(OUTPUT ${test}.o COMMAND /usr/local/opt/llvm/bin/llvm-mc -arc
 add_custom_command(OUTPUT ${test}.bin COMMAND gobjcopy --strip-all --output-target binary ${test}.o ${test}.bin MAIN_DEPENDENCY ${test}.o)
 endforeach(test)
 
-include_directories(../translation/include /usr/local/opt/capstone/include ../googletest/googletest/include ../googletest/googletest)
+include_directories(../include /usr/local/opt/capstone/include ../googletest/googletest/include ../googletest/googletest)
 link_directories(/usr/local/opt/capstone/lib)
 
 add_executable(tests main.cpp translation.cpp ../googletest/googletest/src/gtest-all.cc)
