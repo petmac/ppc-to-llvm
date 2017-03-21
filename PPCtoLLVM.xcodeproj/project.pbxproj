@@ -90,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				C1BF1ADA1E771B5B00F766EA /* disassembly.cpp */,
-				C1BF1ADB1E771B5B00F766EA /* disassembly.h */,
 				C1BF1AD61E768EB700F766EA /* translation.cpp */,
 			);
 			path = translation;
@@ -115,6 +114,7 @@
 		C1C3B2391E81B5E9009EDB5D /* ppc-to-llvm */ = {
 			isa = PBXGroup;
 			children = (
+				C1BF1ADB1E771B5B00F766EA /* disassembly.h */,
 				C1C3B23A1E81B5E9009EDB5D /* translation.h */,
 			);
 			path = "ppc-to-llvm";
