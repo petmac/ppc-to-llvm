@@ -1,3 +1,5 @@
+#include "ppc-to-llvm/disassemble.h"
+
 #include "ppc-to-llvm/disassembly.h"
 
 #include <capstone/capstone.h>

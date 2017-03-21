@@ -1,4 +1,4 @@
-#include "ppc-to-llvm/translation.h"
+#include "ppc-to-llvm/translate.h"
 
 #include "gtest/gtest.h"
 
