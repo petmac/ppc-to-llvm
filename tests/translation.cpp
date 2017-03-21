@@ -1,3 +1,5 @@
+#include "ppc-to-llvm/disassemble.h"
+#include "ppc-to-llvm/disassembly.h"
 #include "ppc-to-llvm/translate.h"
 
 #include "gtest/gtest.h"
@@ -59,7 +61,8 @@ protected:
 
 TEST_P(Translation, matches_expected) {
 	const uint64_t address = 0x80000000; // TODO Get this from somewhere.
-	const std::string translated = translate(binary.data(), binary.size(), address);
+	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address);
+	const std::string translated = translate(disassembly);
 	
 	EXPECT_EQ(translated, expected_ll);
 }

@@ -2,4 +2,6 @@
 
 #include <string>
 
-std::string translate(const void *binary, size_t binary_size, uint64_t address);
+struct Disassembly;
+
+std::string translate(const Disassembly &disassembly);
