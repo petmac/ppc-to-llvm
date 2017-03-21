@@ -4,3 +4,4 @@ before_install: brew install binutils capstone llvm
 script:
 - ./gen_make.sh
 - ./build_make.sh
+- ./tests_make.sh
