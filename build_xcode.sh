@@ -2,5 +2,4 @@
 
 set -ev
 
-cd build
-make
+xcodebuild
