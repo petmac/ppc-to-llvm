@@ -4,9 +4,9 @@ set(TRANSLATION_TEST_DATA_DIR ${CMAKE_CURRENT_SOURCE_DIR}/data/translation)
 set(TESTS blr)
 
 foreach(test ${TESTS})
-add_custom_target(${test}_bin DEPENDS ${test}.bin)
+add_custom_target(${test}_bin DEPENDS ${TRANSLATION_TEST_DATA_DIR}/${test}.bin)
 add_custom_command(OUTPUT ${test}.o COMMAND /usr/local/opt/llvm/bin/llvm-mc -arch ppc64 -filetype obj ${TRANSLATION_TEST_DATA_DIR}/${test}.s -o ${test}.o MAIN_DEPENDENCY ${TRANSLATION_TEST_DATA_DIR}/${test}.s)
-add_custom_command(OUTPUT ${test}.bin COMMAND gobjcopy --strip-all --output-target binary ${test}.o ${test}.bin MAIN_DEPENDENCY ${test}.o)
+add_custom_command(OUTPUT ${TRANSLATION_TEST_DATA_DIR}/${test}.bin COMMAND gobjcopy --strip-all --output-target binary ${test}.o ${TRANSLATION_TEST_DATA_DIR}/${test}.bin MAIN_DEPENDENCY ${test}.o)
 endforeach(test)
 
 include_directories(../include /usr/local/opt/capstone/include ../googletest/googletest/include ../googletest/googletest)
