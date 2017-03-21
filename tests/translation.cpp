@@ -1,8 +1,10 @@
 #include "ppc-to-llvm/disassemble.h"
 #include "ppc-to-llvm/disassembly.h"
 #include "ppc-to-llvm/translate.h"
+#include "ppc-to-llvm/translation.h"
 
 #include "gtest/gtest.h"
+#include "llvm/IR/LLVMContext.h"
 
 #include <fstream>
 
@@ -34,7 +36,7 @@ static std::string load_text_file(const char *path) {
 	return buffer.str();
 }
 
-class Translation : public testing::TestWithParam<const char *> {
+class TranslationTests : public testing::TestWithParam<const char *> {
 public:
 	
 	virtual void SetUp() {
@@ -59,12 +61,12 @@ protected:
 	std::string expected_ll;
 };
 
-TEST_P(Translation, matches_expected) {
+TEST_P(TranslationTests, matches_expected) {
 	const uint64_t address = 0x80000000; // TODO Get this from somewhere.
 	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address);
-	const std::string translated = translate(disassembly);
+	const Translation translation = translate(disassembly);
 	
-	EXPECT_EQ(translated, expected_ll);
+	EXPECT_EQ("TODO", expected_ll);
 }
 
-INSTANTIATE_TEST_CASE_P(, Translation, testing::Values("blr"));
+INSTANTIATE_TEST_CASE_P(, TranslationTests, testing::Values("blr"));

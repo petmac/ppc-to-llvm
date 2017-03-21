@@ -47,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		C10C87D21E81E377002110AD /* disassemble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = disassemble.h; sourceTree = "<group>"; };
+		C10C87D31E81EC31002110AD /* translation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = translation.h; sourceTree = "<group>"; };
 		C1BF1AB51E75283B00F766EA /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		C1BF1ABA1E7528C400F766EA /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BF1ABD1E7528C400F766EA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 				C10C87D21E81E377002110AD /* disassemble.h */,
 				C1BF1ADB1E771B5B00F766EA /* disassembly.h */,
 				C1C3B23A1E81B5E9009EDB5D /* translate.h */,
+				C10C87D31E81EC31002110AD /* translation.h */,
 			);
 			path = "ppc-to-llvm";
 			sourceTree = "<group>";
@@ -333,6 +335,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lcapstone",
+					"-lLLVMCore",
+					"-lLLVMSupport",
+					"-lcurses",
 					"${inherited}",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -379,6 +384,9 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = (
 					"-lcapstone",
+					"-lLLVMCore",
+					"-lLLVMSupport",
+					"-lcurses",
 					"${inherited}",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -491,10 +499,11 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/opt/capstone/lib,
+					"${LLVM_DIR}/lib",
 					"${inherited}",
 				);
 				LLVM_DIR = /usr/local/opt/llvm;
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include ${inherited}";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include ${LLVM_DIR}/include ${inherited}";
 				USE_HEADERMAP = NO;
 			};
 			name = Debug;
@@ -508,10 +517,11 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/opt/capstone/lib,
+					"${LLVM_DIR}/lib",
 					"${inherited}",
 				);
 				LLVM_DIR = /usr/local/opt/llvm;
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include ${inherited}";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include ${LLVM_DIR}/include ${inherited}";
 				USE_HEADERMAP = NO;
 			};
 			name = Release;

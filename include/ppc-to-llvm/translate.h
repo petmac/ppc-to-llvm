@@ -1,7 +1,6 @@
 #pragma once
 
-#include <string>
-
 struct Disassembly;
+struct Translation;
 
-std::string translate(const Disassembly &disassembly);
+Translation translate(const Disassembly &disassembly);
