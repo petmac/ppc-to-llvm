@@ -1,1 +1,4 @@
-TODO WRITE EXPECTED LLVM IR
+
+define internal void @main() {
+  ret void
+}

@@ -4,7 +4,8 @@
 #include "ppc-to-llvm/translation.h"
 
 #include "gtest/gtest.h"
-#include "llvm/IR/LLVMContext.h"
+#include "llvm/IR/Module.h"
+#include "llvm/Support/raw_os_ostream.h"
 
 #include <fstream>
 
@@ -66,7 +67,11 @@ TEST_P(TranslationTests, matches_expected) {
 	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address);
 	const Translation translation = translate(disassembly);
 	
-	EXPECT_EQ("TODO", expected_ll);
+	std::ostringstream actual_ll;
+	llvm::raw_os_ostream out(actual_ll);
+	out << *translation.module;
+	
+	EXPECT_EQ(actual_ll.str(), expected_ll);
 }
 
 INSTANTIATE_TEST_CASE_P(, TranslationTests, testing::Values("blr"));
