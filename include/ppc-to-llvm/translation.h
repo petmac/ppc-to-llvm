@@ -4,8 +4,10 @@
 
 namespace llvm {
 	class LLVMContext;
+	class Module;
 }
 
 struct Translation {
-	std::unique_ptr<llvm::LLVMContext> context;
+	std::shared_ptr<llvm::LLVMContext> context;
+	std::shared_ptr<llvm::Module> module;
 };

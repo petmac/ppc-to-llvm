@@ -7,6 +7,8 @@
 
 Translation translate(const Disassembly &disassembly) {
 	Translation translation;
+	translation.context = std::make_shared<llvm::LLVMContext>();
+	translation.module = std::make_shared<llvm::Module>("module", *translation.context);
 	
 	return translation;
 }
