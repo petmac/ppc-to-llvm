@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C1059D551E848413008A777B /* files.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1059D531E848413008A777B /* files.cpp */; };
+		C1059D571E84853B008A777B /* jit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1059D561E84853B008A777B /* jit.cpp */; };
 		C1BF1ABE1E7528C400F766EA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1ABD1E7528C400F766EA /* main.cpp */; };
 		C1BF1AC31E752A7600F766EA /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1AC21E752A7600F766EA /* gtest-all.cc */; };
 		C1BF1AD81E768EB700F766EA /* translate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1AD61E768EB700F766EA /* translate.cpp */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		C1059D531E848413008A777B /* files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = files.cpp; sourceTree = "<group>"; };
 		C1059D541E848413008A777B /* files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = files.h; sourceTree = "<group>"; };
+		C1059D561E84853B008A777B /* jit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jit.cpp; sourceTree = "<group>"; };
 		C10C87D21E81E377002110AD /* disassemble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = disassemble.h; sourceTree = "<group>"; };
 		C10C87D31E81EC31002110AD /* translation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = translation.h; sourceTree = "<group>"; };
 		C10C87D51E8272DD002110AD /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = ../../Cellar/llvm/3.9.1_1/include; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				C1BF1AB51E75283B00F766EA /* data */,
 				C1059D531E848413008A777B /* files.cpp */,
 				C1059D541E848413008A777B /* files.h */,
+				C1059D561E84853B008A777B /* jit.cpp */,
 				C1BF1ABD1E7528C400F766EA /* main.cpp */,
 				C1BF1D3E1E7879A900F766EA /* translation.cpp */,
 			);
@@ -275,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1059D571E84853B008A777B /* jit.cpp in Sources */,
 				C1BF1ABE1E7528C400F766EA /* main.cpp in Sources */,
 				C1059D551E848413008A777B /* files.cpp in Sources */,
 				C1BF1D3F1E7879A900F766EA /* translation.cpp in Sources */,
@@ -352,9 +356,26 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lcapstone",
-					"-lLLVMCore",
-					"-lLLVMSupport",
 					"-lcurses",
+					"-lffi",
+					"-lLLVMAnalysis",
+					"-lLLVMCodeGen",
+					"-lLLVMCore",
+					"-lLLVMExecutionEngine",
+					"-lLLVMInterpreter",
+					"-lLLVMMC",
+					"-lLLVMMCDisassembler",
+					"-lLLVMScalarOpts",
+					"-lLLVMSelectionDAG",
+					"-lLLVMSupport",
+					"-lLLVMTarget",
+					"-lLLVMTransformUtils",
+					"-lLLVMX86AsmPrinter",
+					"-lLLVMX86CodeGen",
+					"-lLLVMX86Desc",
+					"-lLLVMX86Info",
+					"-lLLVMX86Utils",
+					"-lz",
 					"${inherited}",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -401,9 +422,26 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = (
 					"-lcapstone",
-					"-lLLVMCore",
-					"-lLLVMSupport",
 					"-lcurses",
+					"-lffi",
+					"-lLLVMAnalysis",
+					"-lLLVMCodeGen",
+					"-lLLVMCore",
+					"-lLLVMExecutionEngine",
+					"-lLLVMInterpreter",
+					"-lLLVMMC",
+					"-lLLVMMCDisassembler",
+					"-lLLVMScalarOpts",
+					"-lLLVMSelectionDAG",
+					"-lLLVMSupport",
+					"-lLLVMTarget",
+					"-lLLVMTransformUtils",
+					"-lLLVMX86AsmPrinter",
+					"-lLLVMX86CodeGen",
+					"-lLLVMX86Desc",
+					"-lLLVMX86Info",
+					"-lLLVMX86Utils",
+					"-lz",
 					"${inherited}",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
