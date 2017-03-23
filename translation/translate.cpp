@@ -6,16 +6,18 @@
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/Module.h"
 
+using namespace llvm;
+
 Translation translate(const Disassembly &disassembly) {
 	Translation translation;
-	translation.context = std::make_shared<llvm::LLVMContext>();
-	llvm::LLVMContext &context = *translation.context;
-	translation.module = std::make_shared<llvm::Module>("", context);
-	llvm::Type *const void_type = llvm::Type::getVoidTy(context);
-	llvm::FunctionType *const function_type = llvm::FunctionType::get(void_type, false);
-	llvm::Function *const main = llvm::Function::Create(function_type, llvm::GlobalValue::InternalLinkage, "main", translation.module.get());
-	llvm::BasicBlock *const entry = llvm::BasicBlock::Create(context, "", main);
-	llvm::IRBuilder<> ir(context);
+	translation.context = std::make_shared<LLVMContext>();
+	LLVMContext &context = *translation.context;
+	translation.module = std::make_shared<Module>("", context);
+	Type *const void_type = Type::getVoidTy(context);
+	FunctionType *const function_type = FunctionType::get(void_type, false);
+	Function *const main = Function::Create(function_type, GlobalValue::InternalLinkage, "main", translation.module.get());
+	BasicBlock *const entry = BasicBlock::Create(context, "", main);
+	IRBuilder<> ir(context);
 	ir.SetInsertPoint(entry);
 	ir.CreateRetVoid();
 	
