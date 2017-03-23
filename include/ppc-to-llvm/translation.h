@@ -9,5 +9,5 @@ namespace llvm {
 
 struct Translation {
 	std::shared_ptr<llvm::LLVMContext> context;
-	std::shared_ptr<llvm::Module> module;
+	std::unique_ptr<llvm::Module> module;
 };

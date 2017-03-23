@@ -33,13 +33,13 @@ static void generate_main(Function *run, LLVMContext &context, Module *module) {
 
 Translation translate(const Disassembly &disassembly) {
 	const std::shared_ptr<LLVMContext> context = std::make_shared<LLVMContext>();
-	const std::shared_ptr<Module> module = std::make_shared<Module>("", *context);
+	std::unique_ptr<Module> module = make_unique<Module>("", *context);
 	Function *const run = generate_run(*context, module.get());
 	generate_main(run, *context, module.get());
 	
 	Translation translation;
 	translation.context = context;
-	translation.module = module;
+	translation.module = std::move(module);
 	
 	return translation;
 }
