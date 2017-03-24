@@ -1,9 +1,10 @@
 TESTS := empty
+BIN_FILES := $(foreach test,$(TESTS),$(test).bin)
 DLL_FILES := $(foreach test,$(TESTS),$(test).dylib)
 LL_FILES := $(foreach test,$(TESTS),$(test).ll)
 TRANSLATE := $(BUILT_PRODUCTS_DIR)/translate
 
-all: $(DLL_FILES) $(LL_FILES)
+all: $(BIN_FILES) $(DLL_FILES) $(LL_FILES)
 
 clean:
 	rm -f $(DLL_FILES) $(LL_FILES)
