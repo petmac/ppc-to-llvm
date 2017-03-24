@@ -18,6 +18,9 @@ static Function *generate_run(Type *state, Module *module) {
 	const std::initializer_list<Type *> args = { state };
 	FunctionType *const function_type = FunctionType::get(void_type, args, false);
 	Function *const run = Function::Create(function_type, GlobalValue::InternalLinkage, "run", module);
+	Function::ArgumentListType &fun_args = run->getArgumentList();
+	Argument &state_arg = fun_args.front();
+	state_arg.setName("state");
 	BasicBlock *const entry = BasicBlock::Create(context, "", run);
 	IRBuilder<> ir(context);
 	ir.SetInsertPoint(entry);
