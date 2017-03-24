@@ -3,6 +3,7 @@
 #include <memory>
 
 namespace llvm {
+	class Function;
 	class LLVMContext;
 	class Module;
 }
@@ -10,4 +11,5 @@ namespace llvm {
 struct Translation {
 	std::shared_ptr<llvm::LLVMContext> context;
 	std::unique_ptr<llvm::Module> module;
+	llvm::Function *run = nullptr;
 };

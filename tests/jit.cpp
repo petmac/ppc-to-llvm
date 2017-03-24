@@ -38,6 +38,8 @@ TEST_P(JITTests, matches_expected) {
 	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address);
 	Translation translation = translate(disassembly);
 	
+	ASSERT_NE(translation.run, nullptr);
+	
 	LLVMInitializeNativeTarget();
 	std::string err_str;
 	EngineBuilder engine_builder(std::move(translation.module));
@@ -45,8 +47,7 @@ TEST_P(JITTests, matches_expected) {
 	std::unique_ptr<ExecutionEngine> engine(engine_builder.create());
 	ASSERT_EQ(err_str, "");
 	
-	Function *const main = engine->FindFunctionNamed("main");
-	engine->runFunction(main, ArrayRef<GenericValue>());
+	engine->runFunction(translation.run, ArrayRef<GenericValue>());
 	
 	FAIL();
 }

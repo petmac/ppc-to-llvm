@@ -40,6 +40,7 @@ Translation translate(const Disassembly &disassembly) {
 	Translation translation;
 	translation.context = context;
 	translation.module = std::move(module);
+	translation.run = run;
 	
 	return translation;
 }
