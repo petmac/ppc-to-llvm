@@ -1,3 +1,4 @@
 xcuserdata/
 /build/
+/tests/data/correctness/*.exe
 /tests/data/translation/*.bin
