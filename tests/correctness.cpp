@@ -6,7 +6,7 @@
 #include <functional>
 #include <memory>
 
-typedef void RunFn();
+typedef void RunFn(int32_t *);
 
 class CorrectnessTests : public testing::TestWithParam<const char *> {
 public:
@@ -25,7 +25,7 @@ public:
 		
 		binary = load_binary_file(binary_path.c_str());
 		dll = std::unique_ptr<void, std::function<void(void *)>>(dlopen(dll_path.c_str(), RTLD_NOW), dlclose);
-		run = reinterpret_cast<RunFn *>(dlsym(dll.get(), "main"));
+		run = reinterpret_cast<RunFn *>(dlsym(dll.get(), "run"));
 	}
 	
 protected:
@@ -36,8 +36,9 @@ protected:
 };
 
 TEST_P(CorrectnessTests, matches_expected) {
-	(*run)();
-	FAIL();
+	int32_t i = 0;
+	(*run)(&i);
+	ASSERT_EQ(i, 123);
 }
 
 INSTANTIATE_TEST_CASE_P(, CorrectnessTests, testing::Values("empty"));

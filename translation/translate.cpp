@@ -10,11 +10,17 @@ using namespace llvm;
 
 static Function *generate_run(LLVMContext &context, Module *module) {
 	Type *const void_type = Type::getVoidTy(context);
-	FunctionType *const function_type = FunctionType::get(void_type, false);
-	Function *const run = Function::Create(function_type, GlobalValue::InternalLinkage, "run", module);
+	Type *const state_ptr_type = Type::getInt32PtrTy(context);
+	FunctionType *const function_type = FunctionType::get(void_type, state_ptr_type, false);
+	Function *const run = Function::Create(function_type, GlobalValue::ExternalLinkage, "run", module);
+	run->setDLLStorageClass(GlobalValue::DLLExportStorageClass);
+	Argument *const state_arg = &*run->args().begin();
+	state_arg->setName("state");
 	BasicBlock *const entry = BasicBlock::Create(context, "", run);
 	IRBuilder<> ir(context);
 	ir.SetInsertPoint(entry);
+	ConstantInt *const constant = ConstantInt::get(Type::getInt32Ty(context), 123);
+	ir.CreateStore(constant, state_arg);
 	ir.CreateRetVoid();
 	
 	return run;
@@ -27,7 +33,7 @@ static void generate_main(Function *run, LLVMContext &context, Module *module) {
 	BasicBlock *const entry = BasicBlock::Create(context, "", main);
 	IRBuilder<> ir(context);
 	ir.SetInsertPoint(entry);
-	ir.CreateCall(run);
+	ir.CreateCall(run, ConstantPointerNull::get(Type::getInt32PtrTy(context)));
 	ir.CreateRetVoid();
 }
 
