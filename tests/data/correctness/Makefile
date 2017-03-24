@@ -1,12 +1,12 @@
 TESTS := empty
-EXE_FILES := $(foreach test,$(TESTS),$(test).exe)
+DLL_FILES := $(foreach test,$(TESTS),$(test).dylib)
 LL_FILES := $(foreach test,$(TESTS),$(test).ll)
 TRANSLATE := $(BUILT_PRODUCTS_DIR)/translate
 
-all: $(EXE_FILES) $(LL_FILES)
+all: $(DLL_FILES) $(LL_FILES)
 
 clean:
-	rm -f $(EXE_FILES) $(LL_FILES)
+	rm -f $(DLL_FILES) $(LL_FILES)
 
 %.o: %.s
 	$(LLVM_DIR)/bin/llvm-mc -arch ppc64 -filetype obj $< -o $@
@@ -17,5 +17,5 @@ clean:
 %.ll: %.bin $(TRANSLATE)
 	$(TRANSLATE) $< $@
 
-%.exe: %.ll
-	clang -Wno-override-module -o $@ $<
+%.dylib: %.ll
+	clang -dynamiclib -Wno-override-module -o $@ $<
