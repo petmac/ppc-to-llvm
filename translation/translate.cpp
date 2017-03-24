@@ -8,9 +8,15 @@
 
 using namespace llvm;
 
-static Function *generate_run(LLVMContext &context, Module *module) {
+static Type *generate_state(LLVMContext &context) {
+	return StructType::create(context, "State");
+}
+
+static Function *generate_run(Type *state, Module *module) {
+	LLVMContext &context = module->getContext();
 	Type *const void_type = Type::getVoidTy(context);
-	FunctionType *const function_type = FunctionType::get(void_type, false);
+	const std::initializer_list<Type *> args = { state };
+	FunctionType *const function_type = FunctionType::get(void_type, args, false);
 	Function *const run = Function::Create(function_type, GlobalValue::InternalLinkage, "run", module);
 	BasicBlock *const entry = BasicBlock::Create(context, "", run);
 	IRBuilder<> ir(context);
@@ -20,7 +26,8 @@ static Function *generate_run(LLVMContext &context, Module *module) {
 	return run;
 }
 
-static void generate_main(Function *run, LLVMContext &context, Module *module) {
+static void generate_main(Function *run, Module *module) {
+	LLVMContext &context = module->getContext();
 	Type *const void_type = Type::getVoidTy(context);
 	FunctionType *const function_type = FunctionType::get(void_type, false);
 	Function *const main = Function::Create(function_type, GlobalValue::ExternalLinkage, "main", module);
@@ -33,9 +40,10 @@ static void generate_main(Function *run, LLVMContext &context, Module *module) {
 
 Translation translate(const Disassembly &disassembly) {
 	const std::shared_ptr<LLVMContext> context = std::make_shared<LLVMContext>();
+	Type *const state = generate_state(*context);
 	std::unique_ptr<Module> module = make_unique<Module>("", *context);
-	Function *const run = generate_run(*context, module.get());
-	generate_main(run, *context, module.get());
+	Function *const run = generate_run(state, module.get());
+	generate_main(run, module.get());
 	
 	Translation translation;
 	translation.context = context;

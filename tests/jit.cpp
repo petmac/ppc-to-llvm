@@ -47,7 +47,8 @@ TEST_P(JITTests, matches_expected) {
 	std::unique_ptr<ExecutionEngine> engine(engine_builder.create());
 	ASSERT_EQ(err_str, "");
 	
-	engine->runFunction(translation.run, ArrayRef<GenericValue>());
+	GenericValue state;
+	engine->runFunction(translation.run, state);
 	
 	FAIL();
 }
