@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B22BD46D1E858B070056A702 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B22BD46C1E858B070056A702 /* main.cpp */; };
 		B22BD4711E858CEB0056A702 /* libtranslation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BF1AC81E768E2500F766EA /* libtranslation.a */; };
+		C1059D521E84836A008A777B /* correctness.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1059D511E84836A008A777B /* correctness.cpp */; };
 		C1059D551E848413008A777B /* files.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1059D531E848413008A777B /* files.cpp */; };
 		C1BF1ABE1E7528C400F766EA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1ABD1E7528C400F766EA /* main.cpp */; };
 		C1BF1AC31E752A7600F766EA /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1AC21E752A7600F766EA /* gtest-all.cc */; };
@@ -26,6 +27,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = B22BD4691E858B070056A702;
 			remoteInfo = translate;
+		};
+		C108592E1E859B1E0043CC67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1CC06B91E7364E800BAECB3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C10859281E85939F0043CC67;
+			remoteInfo = "correctness-test-data";
 		};
 		C1BF1D401E787A4500F766EA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -67,6 +75,7 @@
 /* Begin PBXFileReference section */
 		B22BD46A1E858B070056A702 /* translate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = translate; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22BD46C1E858B070056A702 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C1059D511E84836A008A777B /* correctness.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = correctness.cpp; sourceTree = "<group>"; };
 		C1059D531E848413008A777B /* files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = files.cpp; sourceTree = "<group>"; };
 		C1059D541E848413008A777B /* files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = files.h; sourceTree = "<group>"; };
 		C10C87D21E81E377002110AD /* disassemble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = disassemble.h; sourceTree = "<group>"; };
@@ -191,6 +200,7 @@
 		C1CC06C31E73668600BAECB3 /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				C1059D511E84836A008A777B /* correctness.cpp */,
 				C1BF1AB51E75283B00F766EA /* data */,
 				C1059D531E848413008A777B /* files.cpp */,
 				C1059D541E848413008A777B /* files.h */,
@@ -274,6 +284,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C108592F1E859B1E0043CC67 /* PBXTargetDependency */,
 				C1C3B23E1E81B8DF009EDB5D /* PBXTargetDependency */,
 				C1BF1D411E787A4500F766EA /* PBXTargetDependency */,
 			);
@@ -367,6 +378,7 @@
 				C1059D551E848413008A777B /* files.cpp in Sources */,
 				C1BF1D3F1E7879A900F766EA /* translation.cpp in Sources */,
 				C1BF1AC31E752A7600F766EA /* gtest-all.cc in Sources */,
+				C1059D521E84836A008A777B /* correctness.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +398,11 @@
 			isa = PBXTargetDependency;
 			target = B22BD4691E858B070056A702 /* translate */;
 			targetProxy = C108592C1E8594D70043CC67 /* PBXContainerItemProxy */;
+		};
+		C108592F1E859B1E0043CC67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C10859281E85939F0043CC67 /* correctness-test-data */;
+			targetProxy = C108592E1E859B1E0043CC67 /* PBXContainerItemProxy */;
 		};
 		C1BF1D411E787A4500F766EA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -934,6 +951,7 @@
 				C108592A1E85939F0043CC67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C1BF1ABF1E7528C400F766EA /* Build configuration list for PBXNativeTarget "tests" */ = {
 			isa = XCConfigurationList;
