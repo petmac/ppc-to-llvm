@@ -1,11 +1,12 @@
 TESTS := empty
 EXE_FILES := $(foreach test,$(TESTS),$(test).exe)
+LL_FILES := $(foreach test,$(TESTS),$(test).ll)
 TRANSLATE := $(BUILT_PRODUCTS_DIR)/translate
 
-all: $(EXE_FILES)
+all: $(EXE_FILES) $(LL_FILES)
 
 clean:
-	rm -f $(EXE_FILES)
+	rm -f $(EXE_FILES) $(LL_FILES)
 
 %.o: %.s
 	$(LLVM_DIR)/bin/llvm-mc -arch ppc64 -filetype obj $< -o $@
