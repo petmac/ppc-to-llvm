@@ -75,6 +75,7 @@
 /* Begin PBXFileReference section */
 		B22BD46A1E858B070056A702 /* translate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = translate; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22BD46C1E858B070056A702 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C100946C1E893265004AD26D /* state.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = state.h; sourceTree = "<group>"; };
 		C1059D511E84836A008A777B /* correctness.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = correctness.cpp; sourceTree = "<group>"; };
 		C1059D531E848413008A777B /* files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = files.cpp; sourceTree = "<group>"; };
 		C1059D541E848413008A777B /* files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = files.h; sourceTree = "<group>"; };
@@ -177,6 +178,7 @@
 			children = (
 				C10C87D21E81E377002110AD /* disassemble.h */,
 				C1BF1ADB1E771B5B00F766EA /* disassembly.h */,
+				C100946C1E893265004AD26D /* state.h */,
 				C1C3B23A1E81B5E9009EDB5D /* translate.h */,
 				C10C87D31E81EC31002110AD /* translation.h */,
 			);

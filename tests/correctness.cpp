@@ -1,12 +1,14 @@
 #include "files.h"
 
+#include "ppc-to-llvm/state.h"
+
 #include "gtest/gtest.h"
 
 #include <dlfcn.h>
 #include <functional>
 #include <memory>
 
-typedef void RunFn(int32_t *);
+typedef void RunFn(State *);
 
 class CorrectnessTests : public testing::TestWithParam<const char *> {
 public:
@@ -36,9 +38,10 @@ protected:
 };
 
 TEST_P(CorrectnessTests, matches_expected) {
-	int32_t i = 0;
-	(*run)(&i);
-	ASSERT_EQ(i, 123);
+	State state;
+	state.r.fill(0xcccccccc);
+	(*run)(&state);
+	ASSERT_EQ(state.r[0], 123);
 }
 
 INSTANTIATE_TEST_CASE_P(, CorrectnessTests, testing::Values("empty"));
