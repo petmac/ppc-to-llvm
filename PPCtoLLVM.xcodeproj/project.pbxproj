@@ -75,6 +75,7 @@
 /* Begin PBXFileReference section */
 		B22BD46A1E858B070056A702 /* translate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = translate; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22BD46C1E858B070056A702 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C100946B1E88EDB5004AD26D /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = ../../Cellar/unicorn/1.0/include; sourceTree = "<group>"; };
 		C1059D511E84836A008A777B /* correctness.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = correctness.cpp; sourceTree = "<group>"; };
 		C1059D531E848413008A777B /* files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = files.cpp; sourceTree = "<group>"; };
 		C1059D541E848413008A777B /* files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = files.h; sourceTree = "<group>"; };
@@ -127,6 +128,15 @@
 			);
 			path = translate;
 			sourceTree = "<group>";
+		};
+		C100946A1E88ED58004AD26D /* unicorn */ = {
+			isa = PBXGroup;
+			children = (
+				C100946B1E88EDB5004AD26D /* include */,
+			);
+			name = unicorn;
+			path = /usr/local/opt/unicorn;
+			sourceTree = "<absolute>";
 		};
 		C10C87D41E827246002110AD /* llvm */ = {
 			isa = PBXGroup;
@@ -192,6 +202,7 @@
 				C1CC06C31E73668600BAECB3 /* tests */,
 				B22BD46B1E858B070056A702 /* translate */,
 				C1BF1AC91E768E2500F766EA /* translation */,
+				C100946A1E88ED58004AD26D /* unicorn */,
 				C1BF1ABB1E7528C400F766EA /* Products */,
 			);
 			sourceTree = "<group>";
