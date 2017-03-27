@@ -8,7 +8,8 @@
 
 using namespace llvm;
 
-static Function *generate_run(LLVMContext &context, Module *module) {
+static Function *generate_run(Module *module) {
+	LLVMContext &context = module->getContext();
 	Type *const void_type = Type::getVoidTy(context);
 	Type *const state_ptr_type = Type::getInt32PtrTy(context);
 	FunctionType *const function_type = FunctionType::get(void_type, state_ptr_type, false);
@@ -26,7 +27,8 @@ static Function *generate_run(LLVMContext &context, Module *module) {
 	return run;
 }
 
-static void generate_main(Function *run, LLVMContext &context, Module *module) {
+static void generate_main(Function *run, Module *module) {
+	LLVMContext &context = module->getContext();
 	Type *const void_type = Type::getVoidTy(context);
 	FunctionType *const function_type = FunctionType::get(void_type, false);
 	Function *const main = Function::Create(function_type, GlobalValue::ExternalLinkage, "main", module);
@@ -40,8 +42,8 @@ static void generate_main(Function *run, LLVMContext &context, Module *module) {
 Translation translate(const Disassembly &disassembly) {
 	const std::shared_ptr<LLVMContext> context = std::make_shared<LLVMContext>();
 	const std::shared_ptr<Module> module = std::make_shared<Module>("", *context);
-	Function *const run = generate_run(*context, module.get());
-	generate_main(run, *context, module.get());
+	Function *const run = generate_run(module.get());
+	generate_main(run, module.get());
 	
 	Translation translation;
 	translation.context = context;
