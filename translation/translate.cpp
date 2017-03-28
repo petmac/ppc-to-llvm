@@ -8,10 +8,15 @@
 
 using namespace llvm;
 
-static Function *generate_run(Module *module) {
+static StructType *generate_state_type(Module *module) {
+	LLVMContext &context = module->getContext();
+	return StructType::create("State", Type::getInt32Ty(context), nullptr);
+}
+
+static Function *generate_run(StructType *state_type, Module *module) {
 	LLVMContext &context = module->getContext();
 	Type *const void_type = Type::getVoidTy(context);
-	Type *const state_ptr_type = Type::getInt32PtrTy(context);
+	Type *const state_ptr_type = PointerType::getUnqual(state_type);
 	FunctionType *const function_type = FunctionType::get(void_type, state_ptr_type, false);
 	Function *const run = Function::Create(function_type, GlobalValue::ExternalLinkage, "run", module);
 	run->setDLLStorageClass(GlobalValue::DLLExportStorageClass);
@@ -20,8 +25,7 @@ static Function *generate_run(Module *module) {
 	BasicBlock *const entry = BasicBlock::Create(context, "", run);
 	IRBuilder<> ir(context);
 	ir.SetInsertPoint(entry);
-	ConstantInt *const constant = ConstantInt::get(Type::getInt32Ty(context), 123);
-	ir.CreateStore(constant, state_arg);
+	Value *const r0 = ir.CreateStructGEP(Type::getInt32Ty(context), state_arg, 0);
 	ir.CreateRetVoid();
 	
 	return run;
@@ -42,7 +46,8 @@ static void generate_main(Function *run, Module *module) {
 Translation translate(const Disassembly &disassembly) {
 	const std::shared_ptr<LLVMContext> context = std::make_shared<LLVMContext>();
 	const std::shared_ptr<Module> module = std::make_shared<Module>("", *context);
-	Function *const run = generate_run(module.get());
+	StructType *const state_type = generate_state_type(module.get());
+	Function *const run = generate_run(state_type, module.get());
 	generate_main(run, module.get());
 	
 	Translation translation;
