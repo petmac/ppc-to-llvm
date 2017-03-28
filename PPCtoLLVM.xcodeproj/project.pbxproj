@@ -76,6 +76,7 @@
 		B22BD46A1E858B070056A702 /* translate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = translate; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22BD46C1E858B070056A702 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C100946C1E893265004AD26D /* state.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = state.h; sourceTree = "<group>"; };
+		C100946E1E89361D004AD26D /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
 		C1059D511E84836A008A777B /* correctness.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = correctness.cpp; sourceTree = "<group>"; };
 		C1059D531E848413008A777B /* files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = files.cpp; sourceTree = "<group>"; };
 		C1059D541E848413008A777B /* files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = files.h; sourceTree = "<group>"; };
@@ -128,6 +129,15 @@
 			);
 			path = translate;
 			sourceTree = "<group>";
+		};
+		C100946D1E893597004AD26D /* capstone */ = {
+			isa = PBXGroup;
+			children = (
+				C100946E1E89361D004AD26D /* include */,
+			);
+			name = capstone;
+			path = /usr/local/opt/capstone;
+			sourceTree = "<absolute>";
 		};
 		C10C87D41E827246002110AD /* llvm */ = {
 			isa = PBXGroup;
@@ -188,6 +198,7 @@
 		C1CC06B81E7364E800BAECB3 = {
 			isa = PBXGroup;
 			children = (
+				C100946D1E893597004AD26D /* capstone */,
 				C1BF1ADE1E78781A00F766EA /* googletest */,
 				C1BF1AD31E768EB700F766EA /* include */,
 				C10C87D41E827246002110AD /* llvm */,
