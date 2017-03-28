@@ -1,3 +1,3 @@
-define void @run() {
+define dllexport void @run() {
 	ret void
 }
