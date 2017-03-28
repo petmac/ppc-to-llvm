@@ -37,7 +37,6 @@ protected:
 
 TEST_P(CorrectnessTests, matches_expected) {
 	(*run)();
-	FAIL();
 }
 
 INSTANTIATE_TEST_CASE_P(, CorrectnessTests, testing::Values("empty"));
