@@ -3,5 +3,5 @@
 #include "ppc-to-llvm/disassembly.h"
 
 std::string translate(const Disassembly &disassembly) {
-	return "TODO WRITE EXPECTED LLVM IR\n";
+	return "define void @main() {\nret void\n}\n";
 }
