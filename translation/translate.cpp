@@ -3,5 +3,5 @@
 #include "ppc-to-llvm/disassembly.h"
 
 std::string translate(const Disassembly &disassembly) {
-	return "define void @main() {\nret void\n}\n";
+	return "define void @main() {\n\tret void\n}\n";
 }

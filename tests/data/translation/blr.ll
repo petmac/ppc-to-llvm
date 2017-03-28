@@ -1,1 +1,3 @@
-TODO WRITE EXPECTED LLVM IR
+define void @main() {
+	ret void
+}
