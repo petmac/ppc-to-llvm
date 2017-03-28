@@ -25,7 +25,7 @@ public:
 		
 		binary = load_binary_file(binary_path.c_str());
 		dll = std::unique_ptr<void, std::function<void(void *)>>(dlopen(dll_path.c_str(), RTLD_NOW), dlclose);
-		run = reinterpret_cast<RunFn *>(dlsym(dll.get(), "main"));
+		run = reinterpret_cast<RunFn *>(dlsym(dll.get(), "run"));
 	}
 	
 protected:
