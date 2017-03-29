@@ -3,4 +3,4 @@
 set -ev
 
 cd tests
-../build/Release/tests
+../build/Build/Products/Debug/tests

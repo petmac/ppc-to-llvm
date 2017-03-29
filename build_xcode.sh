@@ -2,4 +2,4 @@
 
 set -ev
 
-xcodebuild -scheme tests
+xcodebuild -scheme tests -derivedDataPath build
