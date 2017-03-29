@@ -2,4 +2,4 @@
 
 set -ev
 
-xcodebuild
+xcodebuild -scheme tests
