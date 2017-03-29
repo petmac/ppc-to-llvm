@@ -1,8 +1,9 @@
 #pragma once
 
+#include "ppc-to-llvm/address.h"
+
 #include <stddef.h>
-#include <stdint.h>
 
 struct Disassembly;
 
-Disassembly disassemble(const void *binary, size_t binary_size, uint64_t address);
+Disassembly disassemble(const void *binary, size_t binary_size, Address address);

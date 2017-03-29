@@ -30,7 +30,7 @@ protected:
 };
 
 TEST_P(Translation, succeeds) {
-	const uint64_t address = 0x80000000; // TODO Get this from somewhere.
+	const Address address = 0x80000000; // TODO Get this from somewhere.
 	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address);
 	
 	std::ostringstream translated;
