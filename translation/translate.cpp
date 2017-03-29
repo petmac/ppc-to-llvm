@@ -2,6 +2,10 @@
 
 #include "ppc-to-llvm/disassembly.h"
 
-std::string translate(const Disassembly &disassembly) {
-	return "define dllexport void @run() {\n\tret void\n}\n";
+bool translate(std::ostream &out, const Disassembly &disassembly) {
+	out << "define dllexport void @run() {" << std::endl;
+	out << "\tret void" << std::endl;
+	out << "}" << std::endl;
+	
+	return true;
 }

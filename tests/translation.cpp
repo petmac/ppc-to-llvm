@@ -7,6 +7,7 @@
 #include "gtest/gtest.h"
 
 #include <fstream>
+#include <sstream>
 
 class Translation : public testing::TestWithParam<const char *> {
 public:
@@ -36,9 +37,10 @@ protected:
 TEST_P(Translation, matches_expected) {
 	const uint64_t address = 0x80000000; // TODO Get this from somewhere.
 	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address);
-	const std::string translated = translate(disassembly);
 	
-	EXPECT_EQ(translated, expected_ll);
+	std::ostringstream translated;
+	ASSERT_TRUE(translate(translated, disassembly));
+	ASSERT_EQ(translated.str(), expected_ll);
 }
 
 INSTANTIATE_TEST_CASE_P(, Translation, testing::Values("blr"));

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
+#include <ostream>
 
 struct Disassembly;
 
-std::string translate(const Disassembly &disassembly);
+bool translate(std::ostream &out, const Disassembly &disassembly);
