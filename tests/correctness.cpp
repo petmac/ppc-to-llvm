@@ -39,8 +39,9 @@ protected:
 
 TEST_P(CorrectnessTests, matches_expected) {
 	State state = {};
+	state.pc = 0x80000000; // TODO Get this from somewhere.
 	(*run)(&state);
-	ASSERT_EQ(state.r[0], 123);
+	ASSERT_EQ(state.pc, 123);
 }
 
 INSTANTIATE_TEST_CASE_P(, CorrectnessTests, testing::Values("empty"));
