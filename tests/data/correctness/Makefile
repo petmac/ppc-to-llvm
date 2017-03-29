@@ -7,7 +7,7 @@ TRANSLATE := $(BUILT_PRODUCTS_DIR)/translate
 all: $(BIN_FILES) $(DLL_FILES) $(LL_FILES)
 
 clean:
-	rm -f $(DLL_FILES) $(LL_FILES)
+	rm -f $(BIN_FILES) $(DLL_FILES) $(LL_FILES)
 
 %.o: %.s
 	$(LLVM_DIR)/bin/llvm-mc -arch ppc64 -filetype obj $< -o $@
