@@ -7,6 +7,8 @@ bool translate(std::ostream &out, const Disassembly &disassembly) {
 	const std::string r_type = "i64";
 	const std::string indent = "\t";
 	
+	out << "declare void @llvm.debugtrap() nounwind" << std::endl;
+	out << std::endl;
 	out << "%State = type { [" << R_COUNT << " x " << r_type << "] }" << std::endl;
 	out << std::endl;
 	out << "define dllexport void @run(%State* %state) {" << std::endl;
