@@ -40,6 +40,7 @@ protected:
 TEST_P(CorrectnessTests, matches_expected) {
 	State state = {};
 	(*run)(&state);
+	ASSERT_EQ(state.r[0], 123);
 }
 
 INSTANTIATE_TEST_CASE_P(, CorrectnessTests, testing::Values("empty"));
