@@ -3,6 +3,8 @@
 
 #include "ppc-to-llvm/disassembly.h"
 
+#include <capstone/capstone.h>
+
 static const std::string address_type = "i32";
 static const std::string r_type = "i64";
 static const std::string indent = "\t";
@@ -24,18 +26,48 @@ static void output_registers(std::ostream &out) {
 	out << indent << "%pc = getelementptr inbounds %State, %State* %state, i32 0, i32 1" << std::endl;
 }
 
-static void output_run(std::ostream &out) {
+static void output_switch(std::ostream &out, const Disassembly &disassembly) {
+	const std::string pc = "%1";
+	out << indent << pc << " = load " << address_type << ", " << address_type << "* %pc" << std::endl;
+	out << indent << "switch " << address_type << " " << pc << ", label %badpc [";
+	if (disassembly.insn_count > 0) {
+		const cs_insn &first_insn = *disassembly.insn;
+		out << address_type << " " << first_insn.address << ", label %insn0";
+		for (size_t insn_index = 1; insn_index < disassembly.insn_count; ++insn_index) {
+			const cs_insn &insn = disassembly.insn.get()[insn_index];
+			out << " " << address_type << " " << insn.address << ", label %insn" << insn_index;
+		}
+	}
+	out << "]" << std::endl;
+}
+
+static void output_instructions(std::ostream &out, const Disassembly &disassembly) {
+	for (size_t insn_index = 0; insn_index < disassembly.insn_count; ++insn_index) {
+		out << "insn" << insn_index << ":" << std::endl;
+		out << indent << "store " << address_type << " 123, " << address_type << "* %pc" << std::endl;
+		out << indent << "br label %loop" << std::endl;
+	}
+}
+
+static void output_run(std::ostream &out, const Disassembly &disassembly) {
 	out << "define dllexport void @run(%State* %state) {" << std::endl;
 	output_registers(out);
-	out << indent << "store " << address_type << " 123, " << address_type << "* %pc" << std::endl;
+	out << indent << "br label %loop" << std::endl;
+	
+	out << "loop:" << std::endl;
+	output_switch(out, disassembly);
+	
+	out << "badpc:" << std::endl;
 	out << indent << "ret void" << std::endl;
+	
+	output_instructions(out, disassembly);
 	out << "}" << std::endl;
 }
 
 bool translate(std::ostream &out, const Disassembly &disassembly) {
 	output_declarations(out);
 	out << std::endl;
-	output_run(out);
+	output_run(out, disassembly);
 	
 	return true;
 }
