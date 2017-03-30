@@ -41,15 +41,25 @@ static void output_switch(std::ostream &out, const Disassembly &disassembly) {
 	out << "]" << std::endl;
 }
 
-static void output_instructions(std::ostream &out, const Disassembly &disassembly) {
-	for (size_t insn_index = 0; insn_index < disassembly.insn_count; ++insn_index) {
-		out << "insn" << insn_index << ":" << std::endl;
-		out << indent << "store " << address_type << " 123, " << address_type << "* %pc" << std::endl;
-		out << indent << "br label %loop" << std::endl;
-	}
+static bool translate_instruction(std::ostream &out, const cs_insn &insn) {
+	out << indent << "store " << address_type << " 123, " << address_type << "* %pc" << std::endl;
+	
+	return true;
 }
 
-static void output_run(std::ostream &out, const Disassembly &disassembly) {
+static bool output_instructions(std::ostream &out, const Disassembly &disassembly) {
+	for (size_t insn_index = 0; insn_index < disassembly.insn_count; ++insn_index) {
+		out << "insn" << insn_index << ":" << std::endl;
+		if (!translate_instruction(out, disassembly.insn.get()[insn_index])) {
+			return false;
+		}
+		out << indent << "br label %loop" << std::endl;
+	}
+	
+	return true;
+}
+
+static bool output_run(std::ostream &out, const Disassembly &disassembly) {
 	out << "define dllexport void @run(%State* %state) {" << std::endl;
 	output_registers(out);
 	out << indent << "br label %loop" << std::endl;
@@ -60,14 +70,21 @@ static void output_run(std::ostream &out, const Disassembly &disassembly) {
 	out << "badpc:" << std::endl;
 	out << indent << "ret void" << std::endl;
 	
-	output_instructions(out, disassembly);
+	if (!output_instructions(out, disassembly)) {
+		return false;
+	}
+	
 	out << "}" << std::endl;
+	
+	return true;
 }
 
 bool translate(std::ostream &out, const Disassembly &disassembly) {
 	output_declarations(out);
 	out << std::endl;
-	output_run(out, disassembly);
+	if (!output_run(out, disassembly)) {
+		return false;
+	}
 	
 	return true;
 }
