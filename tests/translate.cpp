@@ -1,4 +1,5 @@
-#include "../tests/arch.h"
+#include "arch.h"
+#include "files.h"
 
 #include "ppc-to-llvm/disassemble.h"
 #include "ppc-to-llvm/disassembly.h"
@@ -6,25 +7,8 @@
 
 #include <iostream>
 #include <fstream>
-#include <vector>
 
 static const char *const indent = "\t";
-
-static std::vector<char> load_binary_file(const char *path) {
-	std::ifstream file(path, std::ios::binary);
-	if (file.fail()) {
-		throw std::runtime_error("File open failed.");
-	}
-	
-	file.seekg(0, std::ios::end);
-	const size_t buffer_size = file.tellg();
-	file.seekg(0);
-	
-	std::vector<char> buffer(buffer_size);
-	file.read(buffer.data(), buffer.size());
-	
-	return buffer;
-}
 
 static void output_state_ptrs(std::ostream &out) {
 	output_register_ptrs(out, "foo", r_type, 0, R_COUNT);
