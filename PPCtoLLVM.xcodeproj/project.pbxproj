@@ -130,13 +130,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C1BF1AC91E768E2500F766EA /* translation */ = {
+		C1BF1AC91E768E2500F766EA /* src */ = {
 			isa = PBXGroup;
 			children = (
 				C1BF1ADA1E771B5B00F766EA /* disassemble.cpp */,
 				C1BF1AD61E768EB700F766EA /* translate.cpp */,
 			);
-			path = translation;
+			path = src;
 			sourceTree = "<group>";
 		};
 		C1BF1AD31E768EB700F766EA /* include */ = {
@@ -170,8 +170,8 @@
 			children = (
 				C1BF1ADE1E78781A00F766EA /* googletest */,
 				C1BF1AD31E768EB700F766EA /* include */,
+				C1BF1AC91E768E2500F766EA /* src */,
 				C1CC06C31E73668600BAECB3 /* tests */,
-				C1BF1AC91E768E2500F766EA /* translation */,
 				C1BF1ABB1E7528C400F766EA /* Products */,
 			);
 			sourceTree = "<group>";
