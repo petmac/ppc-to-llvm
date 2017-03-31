@@ -30,11 +30,13 @@ protected:
 };
 
 TEST_P(Translation, succeeds) {
-	const Address address = 0x80000000; // TODO Get this from somewhere.
+	const uint64_t address = 0x80000000; // TODO Get this from somewhere.
 	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address);
 	
+	Arch arch;
+	
 	std::ostringstream translated;
-	ASSERT_TRUE(translate(translated, disassembly));
+	ASSERT_TRUE(translate(translated, disassembly, arch));
 }
 
 INSTANTIATE_TEST_CASE_P(, Translation, testing::Values("blr"));

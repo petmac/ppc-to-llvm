@@ -75,12 +75,11 @@
 /* Begin PBXFileReference section */
 		B22BD46A1E858B070056A702 /* translate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = translate; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22BD46C1E858B070056A702 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		B29A87331E8C369800A86E22 /* address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = address.h; sourceTree = "<group>"; };
-		C100946F1E8BA186004AD26D /* state.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = state.h; sourceTree = "<group>"; };
 		C1059D511E84836A008A777B /* correctness.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = correctness.cpp; sourceTree = "<group>"; };
 		C1059D531E848413008A777B /* files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = files.cpp; sourceTree = "<group>"; };
 		C1059D541E848413008A777B /* files.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = files.h; sourceTree = "<group>"; };
 		C10C87D21E81E377002110AD /* disassemble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = disassemble.h; sourceTree = "<group>"; };
+		C14C344B1E8E2DAB00150B62 /* arch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arch.h; sourceTree = "<group>"; };
 		C1BF1AB51E75283B00F766EA /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		C1BF1ABA1E7528C400F766EA /* tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BF1ABD1E7528C400F766EA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -166,10 +165,8 @@
 		C1C3B2391E81B5E9009EDB5D /* ppc-to-llvm */ = {
 			isa = PBXGroup;
 			children = (
-				B29A87331E8C369800A86E22 /* address.h */,
 				C10C87D21E81E377002110AD /* disassemble.h */,
 				C1BF1ADB1E771B5B00F766EA /* disassembly.h */,
-				C100946F1E8BA186004AD26D /* state.h */,
 				C1C3B23A1E81B5E9009EDB5D /* translate.h */,
 			);
 			path = "ppc-to-llvm";
@@ -196,6 +193,7 @@
 				C1059D531E848413008A777B /* files.cpp */,
 				C1059D541E848413008A777B /* files.h */,
 				C1BF1ABD1E7528C400F766EA /* main.cpp */,
+				C14C344B1E8E2DAB00150B62 /* arch.h */,
 				C1BF1D3E1E7879A900F766EA /* translation.cpp */,
 			);
 			path = tests;

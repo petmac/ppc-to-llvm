@@ -1,6 +1,5 @@
+#include "arch.h"
 #include "files.h"
-
-#include "ppc-to-llvm/state.h"
 
 #include "gtest/gtest.h"
 

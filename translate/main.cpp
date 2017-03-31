@@ -1,3 +1,5 @@
+#include "../tests/arch.h"
+
 #include "ppc-to-llvm/disassemble.h"
 #include "ppc-to-llvm/disassembly.h"
 #include "ppc-to-llvm/translate.h"
@@ -5,6 +7,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+
+static const char *const indent = "\t";
 
 static std::vector<char> load_binary_file(const char *path) {
 	std::ifstream file(path, std::ios::binary);
@@ -20,6 +24,11 @@ static std::vector<char> load_binary_file(const char *path) {
 	file.read(buffer.data(), buffer.size());
 	
 	return buffer;
+}
+
+static void output_state_ptrs(std::ostream &out) {
+	output_register_ptrs(out, "foo", r_type, 0, R_COUNT);
+	out << indent << "%pc = getelementptr inbounds %State, %State* %state, i32 0, i32 1" << std::endl;
 }
 
 int main(int argc, const char *argv[]) {
@@ -39,7 +48,16 @@ int main(int argc, const char *argv[]) {
 		return 2;
 	}
 	
-	if (!translate(out, disassembly)) {
+	out << "%State = type { ";
+	out << "[" << R_COUNT << " x " << r_type << "], "; // r
+	out << address_type; // pc
+	out << " }" << std::endl;
+	out << std::endl;
+	
+	Arch arch;
+	arch.output_state_ptrs = output_state_ptrs;
+	
+	if (!translate(out, disassembly, arch)) {
 		std::cerr << "Couldn't translate " << argv[2] << std::endl;
 		return 3;
 	}
