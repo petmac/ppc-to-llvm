@@ -63,7 +63,7 @@ static void output_register_ptrs(std::ostream &out, const char *prefix, const ch
 
 static bool output_run(std::ostream &out, const Disassembly &disassembly, const TranslateArch &arch) {
 	out << "define dllexport void @run(%State* %state) {" << std::endl;
-	output_register_ptrs(out, "foo", arch.r_type.c_str(), 0, R_COUNT);
+	output_register_ptrs(out, "r", arch.r_type.c_str(), 0, R_COUNT);
 	out << indent << "%pc = getelementptr inbounds %State, %State* %state, i32 0, i32 1" << std::endl;
 	out << indent << "br label %loop" << std::endl;
 	
