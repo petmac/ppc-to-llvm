@@ -44,8 +44,9 @@ static bool translate_instruction(std::ostream &out, const cs_insn &insn, const 
 
 static bool output_instructions(std::ostream &out, const Disassembly &disassembly, const char *address_type) {
 	for (size_t insn_index = 0; insn_index < disassembly.insn_count; ++insn_index) {
-		out << "insn" << insn_index << ":" << std::endl;
-		if (!translate_instruction(out, disassembly.insn.get()[insn_index], address_type)) {
+		const cs_insn &insn = disassembly.insn.get()[insn_index];
+		out << "insn" << insn_index << ": ; " << insn.mnemonic << " " << insn.op_str << std::endl;
+		if (!translate_instruction(out, insn, address_type)) {
 			return false;
 		}
 		out << indent << "br label %loop" << std::endl;
