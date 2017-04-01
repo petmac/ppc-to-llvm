@@ -1,9 +1,9 @@
 #pragma once
 
+#include <cstddef>
+#include <cstdint>
 #include <memory>
 #include <ostream>
-#include <stddef.h>
-#include <stdint.h>
 
 struct cs_insn;
 
