@@ -11,7 +11,7 @@ static void close_capstone(csh *csp) {
 
 Disassembly disassemble(const void *binary, size_t binary_size, uint64_t address, const Arch &arch) {
 	const Capstone cs(new csh(0), &close_capstone);
-	const cs_mode arch_mode = (arch.address_bits == b64) ? CS_MODE_64 : CS_MODE_32;
+	const cs_mode arch_mode = (arch.r_bits == b64) ? CS_MODE_64 : CS_MODE_32;
 	const cs_mode mode = static_cast<cs_mode>(arch_mode | CS_MODE_BIG_ENDIAN);
 	const cs_err err = cs_open(CS_ARCH_PPC, mode, cs.get());
 	if (err != CS_ERR_OK) {
