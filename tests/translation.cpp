@@ -1,8 +1,6 @@
 #include "files.h"
 
-#include "ppc-to-llvm/disassemble.h"
-#include "ppc-to-llvm/disassembly.h"
-#include "ppc-to-llvm/translate.h"
+#include "ppc-to-llvm/ppc-to-llvm.h"
 
 #include "gtest/gtest.h"
 

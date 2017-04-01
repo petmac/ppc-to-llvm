@@ -1,6 +1,4 @@
-#include "ppc-to-llvm/disassemble.h"
-
-#include "ppc-to-llvm/disassembly.h"
+#include "ppc-to-llvm/ppc-to-llvm.h"
 
 #include <capstone/capstone.h>
 
