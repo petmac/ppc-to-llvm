@@ -2,6 +2,8 @@
 
 #include <capstone/capstone.h>
 
+#include <map>
+
 struct TranslateArch {
 	std::string address_type;
 	std::string r_type;
@@ -80,15 +82,15 @@ static bool output_run(std::ostream &out, const Disassembly &disassembly, const 
 	return true;
 }
 
-static const char *bits_to_type[] = {
-	"i32",
-	"i64"
+static const std::map<Bits, const char *> bits_to_type = {
+	{ b32, "i32" },
+	{ b64, "i64" },
 };
 
 bool translate(std::ostream &out, const Disassembly &disassembly, const Arch &arch) {
 	TranslateArch translate_arch;
-	translate_arch.address_type = bits_to_type[arch.address_bits];
-	translate_arch.r_type = bits_to_type[arch.r_bits];
+	translate_arch.address_type = bits_to_type.at(arch.address_bits);
+	translate_arch.r_type = bits_to_type.at(arch.r_bits);
 	
 	output_declarations(out, translate_arch);
 	out << std::endl;
