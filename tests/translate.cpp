@@ -11,9 +11,10 @@ int main(int argc, const char *argv[]) {
 		return 1;
 	}
 	
+	const Arch arch {};
 	const std::vector<char> binary = load_binary_file(argv[1]);
 	const uint64_t address = 0x80000000; // TODO Get this from somewhere.
-	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address);
+	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address, arch);
 	
 	std::ofstream out(argv[2]);
 	if (out.fail()) {
@@ -21,7 +22,6 @@ int main(int argc, const char *argv[]) {
 		return 2;
 	}
 	
-	Arch arch;
 	if (!translate(out, disassembly, arch)) {
 		std::cerr << "Couldn't translate " << argv[2] << std::endl;
 		return 3;

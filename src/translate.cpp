@@ -2,10 +2,15 @@
 
 #include <capstone/capstone.h>
 
+struct TranslateArch {
+	std::string address_type;
+	std::string r_type;
+};
+
 static const size_t R_COUNT = 32;
 static const std::string indent = "\t";
 
-static void output_declarations(std::ostream &out, const Arch &arch) {
+static void output_declarations(std::ostream &out, const TranslateArch &arch) {
 	out << "declare void @llvm.debugtrap() nounwind" << std::endl;
 	out << std::endl;
 	out << "%State = type { ";
@@ -54,7 +59,7 @@ static void output_register_ptrs(std::ostream &out, const char *prefix, const ch
 	}
 }
 
-static bool output_run(std::ostream &out, const Disassembly &disassembly, const Arch &arch) {
+static bool output_run(std::ostream &out, const Disassembly &disassembly, const TranslateArch &arch) {
 	out << "define dllexport void @run(%State* %state) {" << std::endl;
 	output_register_ptrs(out, "foo", arch.r_type.c_str(), 0, R_COUNT);
 	out << indent << "%pc = getelementptr inbounds %State, %State* %state, i32 0, i32 1" << std::endl;
@@ -75,10 +80,19 @@ static bool output_run(std::ostream &out, const Disassembly &disassembly, const 
 	return true;
 }
 
+static const char *bits_to_type[] = {
+	"i32",
+	"i64"
+};
+
 bool translate(std::ostream &out, const Disassembly &disassembly, const Arch &arch) {
-	output_declarations(out, arch);
+	TranslateArch translate_arch;
+	translate_arch.address_type = bits_to_type[arch.address_bits];
+	translate_arch.r_type = bits_to_type[arch.r_bits];
+	
+	output_declarations(out, translate_arch);
 	out << std::endl;
-	if (!output_run(out, disassembly, arch)) {
+	if (!output_run(out, disassembly, translate_arch)) {
 		return false;
 	}
 	

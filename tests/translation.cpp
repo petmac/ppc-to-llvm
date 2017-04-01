@@ -28,10 +28,9 @@ protected:
 };
 
 TEST_P(Translation, succeeds) {
+	const Arch arch {};
 	const uint64_t address = 0x80000000; // TODO Get this from somewhere.
-	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address);
-	
-	Arch arch;
+	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address, arch);
 	
 	std::ostringstream translated;
 	ASSERT_TRUE(translate(translated, disassembly, arch));
