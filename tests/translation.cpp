@@ -17,7 +17,7 @@ public:
 		data_base_path.append(data_name);
 		
 		std::string binary_path(data_base_path);
-		binary_path.append(".bin");
+		binary_path.append("-64.bin");
 		
 		binary = load_binary_file(binary_path.c_str());
 	}
