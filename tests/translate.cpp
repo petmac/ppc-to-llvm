@@ -11,19 +11,22 @@ int main(int argc, const char *argv[]) {
 		return 1;
 	}
 	
+	const char *const input_path = argv[1];
+	const char *const output_path = argv[2];
+	
 	const Arch arch {};
-	const std::vector<char> binary = load_binary_file(argv[1]);
+	const std::vector<char> binary = load_binary_file(input_path);
 	const uint64_t address = 0x80000000; // TODO Get this from somewhere.
 	const Disassembly disassembly = disassemble(binary.data(), binary.size(), address, arch);
 	
-	std::ofstream out(argv[2]);
+	std::ofstream out(output_path);
 	if (out.fail()) {
-		std::cerr << "Couldn't open " << argv[2] << std::endl;
+		std::cerr << "Couldn't open " << output_path << std::endl;
 		return 2;
 	}
 	
 	if (!translate(out, disassembly, arch)) {
-		std::cerr << "Couldn't translate " << argv[2] << std::endl;
+		std::cerr << "Couldn't translate " << input_path << std::endl;
 		return 3;
 	}
 	
