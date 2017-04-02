@@ -23,7 +23,7 @@ public:
 		binary_path.append("-64.bin");
 		
 		std::string dll_path(data_base_path);
-		dll_path.append("-64.dylib");
+		dll_path.append("-64-64.dylib");
 		
 		binary = load_binary_file(binary_path.c_str());
 		dll = std::unique_ptr<void, std::function<void(void *)>>(dlopen(dll_path.c_str(), RTLD_NOW), dlclose);
