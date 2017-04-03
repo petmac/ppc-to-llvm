@@ -17,14 +17,14 @@ int main(int argc, const char *argv[]) {
 		return 1;
 	}
 	
-	const Bits r_bits = str_to_bits.at(argv[1]);
+	const Bits arch_bits = str_to_bits.at(argv[1]);
 	const Bits address_bits = str_to_bits.at(argv[2]);
 	const char *const input_path = argv[3];
 	const char *const output_path = argv[4];
 	
 	Arch arch;
+	arch.arch_bits = arch_bits;
 	arch.address_bits = address_bits;
-	arch.r_bits = r_bits;
 	
 	const std::vector<char> binary = load_binary_file(input_path);
 	const uint64_t address = 0x80000000; // TODO Get this from somewhere.

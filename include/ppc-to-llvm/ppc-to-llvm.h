@@ -16,8 +16,8 @@ enum Bits {
 };
 
 struct Arch {
+	Bits arch_bits = b64;
 	Bits address_bits = b32;
-	Bits r_bits = b64;
 };
 
 struct Disassembly {

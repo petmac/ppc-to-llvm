@@ -5,8 +5,8 @@
 #include <map>
 
 struct TranslateArch {
+	std::string arch_type;
 	std::string address_type;
-	std::string r_type;
 };
 
 static const size_t R_COUNT = 32;
@@ -16,7 +16,7 @@ static void output_declarations(std::ostream &out, const TranslateArch &arch) {
 	out << "declare void @llvm.debugtrap() nounwind" << std::endl;
 	out << std::endl;
 	out << "%State = type { ";
-	out << "[" << R_COUNT << " x " << arch.r_type << "], "; // r
+	out << "[" << R_COUNT << " x " << arch.arch_type << "], "; // r
 	out << arch.address_type; // pc
 	out << " }" << std::endl;
 }
@@ -64,7 +64,7 @@ static void output_register_ptrs(std::ostream &out, const char *prefix, const ch
 
 static bool output_run(std::ostream &out, const Disassembly &disassembly, const TranslateArch &arch) {
 	out << "define dllexport void @run(%State* %state) {" << std::endl;
-	output_register_ptrs(out, "r", arch.r_type.c_str(), 0, R_COUNT);
+	output_register_ptrs(out, "r", arch.arch_type.c_str(), 0, R_COUNT);
 	out << indent << "%pc = getelementptr inbounds %State, %State* %state, i32 0, i32 1" << std::endl;
 	out << indent << "br label %loop" << std::endl;
 	
@@ -90,8 +90,8 @@ static const std::map<Bits, const char *> bits_to_type = {
 
 bool translate(std::ostream &out, const Disassembly &disassembly, const Arch &arch) {
 	TranslateArch translate_arch;
+	translate_arch.arch_type = bits_to_type.at(arch.arch_bits);
 	translate_arch.address_type = bits_to_type.at(arch.address_bits);
-	translate_arch.r_type = bits_to_type.at(arch.r_bits);
 	
 	output_declarations(out, translate_arch);
 	out << std::endl;
