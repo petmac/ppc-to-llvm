@@ -35,13 +35,6 @@
 			remoteGlobalIDString = C10859281E85939F0043CC67;
 			remoteInfo = "correctness-test-data";
 		};
-		C1C3B23D1E81B8DF009EDB5D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1CC06B91E7364E800BAECB3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C1BF1AC71E768E2500F766EA;
-			remoteInfo = translation;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -240,7 +233,6 @@
 			);
 			dependencies = (
 				C108592F1E859B1E0043CC67 /* PBXTargetDependency */,
-				C1C3B23E1E81B8DF009EDB5D /* PBXTargetDependency */,
 			);
 			name = tests;
 			productName = tests;
@@ -353,11 +345,6 @@
 			isa = PBXTargetDependency;
 			target = C10859281E85939F0043CC67 /* test-data */;
 			targetProxy = C108592E1E859B1E0043CC67 /* PBXContainerItemProxy */;
-		};
-		C1C3B23E1E81B8DF009EDB5D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C1BF1AC71E768E2500F766EA /* translation */;
-			targetProxy = C1C3B23D1E81B8DF009EDB5D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
