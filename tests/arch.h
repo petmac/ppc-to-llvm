@@ -2,9 +2,7 @@
 
 #include <array>
 
-typedef uint32_t Address;
-typedef int64_t R;
-
+template <typename R, typename Address>
 struct State {
 	std::array<R, 32> r;
 	Address pc = 0;
