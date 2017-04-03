@@ -18,25 +18,15 @@ public:
 		const size_t arch_bits = std::get<1>(GetParam());
 		const size_t address_bits = std::get<2>(GetParam());
 		
-		std::ostringstream path_prefix;
-		path_prefix << "data/" << data_name << "-" << arch_bits;
+		std::ostringstream dll_path;
+		dll_path << "data/" << data_name << "-" << arch_bits << "-" << address_bits << ".dylib";
 		
-		std::string binary_path = path_prefix.str();
-		binary_path.append(".bin");
-		
-		path_prefix << "-" << address_bits;
-		
-		std::string dll_path = path_prefix.str();
-		dll_path.append(".dylib");
-		
-		binary = load_binary_file(binary_path.c_str());
-		dll = std::unique_ptr<void, std::function<void(void *)>>(dlopen(dll_path.c_str(), RTLD_NOW), dlclose);
+		dll = std::unique_ptr<void, std::function<void(void *)>>(dlopen(dll_path.str().c_str(), RTLD_NOW), dlclose);
 		ASSERT_TRUE(dll);
 	}
 	
 protected:
 	
-	std::vector<char> binary;
 	std::unique_ptr<void, std::function<void(void *)>> dll;
 	
 	template <typename R, typename Address>
