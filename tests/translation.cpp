@@ -10,8 +10,8 @@
 #include <sstream>
 
 static const std::map<Bits, const char *> bits_suffixes = {
-	{ b32, "-32" },
-	{ b64, "-64" }
+	{ b32, "32" },
+	{ b64, "64" }
 };
 
 class Translation : public testing::TestWithParam<std::tuple<const char *, Bits, Bits>> {
@@ -19,19 +19,15 @@ public:
 	
 	virtual void SetUp() {
 		const char *const data_name = std::get<0>(GetParam());
-		const Bits address_bits = std::get<1>(GetParam());
-		const Bits r_bits = std::get<2>(GetParam());
-		const char *const data_root = "data/";
-		std::string data_base_path(data_root);
-		data_base_path.append(data_name);
+		const Bits arch_bits = std::get<1>(GetParam());
+		const Bits address_bits = std::get<2>(GetParam());
 		
-		std::string binary_path(data_base_path);
-		binary_path.append(bits_suffixes.at(r_bits));
-		binary_path.append(".bin");
+		std::ostringstream binary_path;
+		binary_path << "data/" << data_name << "-" << bits_suffixes.at(arch_bits) << ".bin";
 		
-		binary = load_binary_file(binary_path.c_str());
+		binary = load_binary_file(binary_path.str().c_str());
 		arch.address_bits = address_bits;
-		arch.r_bits = r_bits;
+		arch.r_bits = arch_bits;
 	}
 	
 protected:
