@@ -18,7 +18,6 @@
 		C1BF1AD81E768EB700F766EA /* translate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1AD61E768EB700F766EA /* translate.cpp */; };
 		C1BF1AD91E7712CA00F766EA /* libtranslation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BF1AC81E768E2500F766EA /* libtranslation.a */; };
 		C1BF1ADC1E771B5B00F766EA /* disassemble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1ADA1E771B5B00F766EA /* disassemble.cpp */; };
-		C1BF1D3F1E7879A900F766EA /* translation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1BF1D3E1E7879A900F766EA /* translation.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +74,6 @@
 		C1BF1AC81E768E2500F766EA /* libtranslation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtranslation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BF1AD61E768EB700F766EA /* translate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = translate.cpp; sourceTree = "<group>"; };
 		C1BF1ADA1E771B5B00F766EA /* disassemble.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = disassemble.cpp; sourceTree = "<group>"; };
-		C1BF1D3E1E7879A900F766EA /* translation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = translation.cpp; sourceTree = "<group>"; };
 		C1C3B23A1E81B5E9009EDB5D /* ppc-to-llvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ppc-to-llvm.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,7 +171,6 @@
 				C1059D511E84836A008A777B /* runtime.cpp */,
 				C14C344B1E8E2DAB00150B62 /* state.h */,
 				B22BD46C1E858B070056A702 /* translate.cpp */,
-				C1BF1D3E1E7879A900F766EA /* translation.cpp */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -323,7 +320,6 @@
 			files = (
 				C1BF1ABE1E7528C400F766EA /* main.cpp in Sources */,
 				C1059D551E848413008A777B /* files.cpp in Sources */,
-				C1BF1D3F1E7879A900F766EA /* translation.cpp in Sources */,
 				C1BF1AC31E752A7600F766EA /* gtest-all.cc in Sources */,
 				C1059D521E84836A008A777B /* runtime.cpp in Sources */,
 				C15657181E92B89E00B78C6B /* data.cpp in Sources */,
