@@ -1,6 +1,5 @@
 xcuserdata/
 /build/
-/tests/data/correctness/*.bin
-/tests/data/correctness/*.dylib
-/tests/data/correctness/*.ll
-/tests/data/translation/*.bin
+/tests/data/*.bin
+/tests/data/*.dylib
+/tests/data/*.ll

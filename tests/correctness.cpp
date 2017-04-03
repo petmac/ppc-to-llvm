@@ -18,7 +18,7 @@ public:
 		const size_t address_bits = std::get<2>(GetParam());
 		
 		std::ostringstream path_prefix;
-		path_prefix << "data/correctness/" << data_name << "-" << arch_bits;
+		path_prefix << "data/" << data_name << "-" << arch_bits;
 		
 		std::string binary_path = path_prefix.str();
 		binary_path.append(".bin");

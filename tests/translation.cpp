@@ -20,7 +20,7 @@ public:
 		const char *const data_name = std::get<0>(GetParam());
 		const Bits address_bits = std::get<1>(GetParam());
 		const Bits r_bits = std::get<2>(GetParam());
-		const char *const data_root = "data/translation/";
+		const char *const data_root = "data/";
 		std::string data_base_path(data_root);
 		data_base_path.append(data_name);
 		
