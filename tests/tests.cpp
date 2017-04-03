@@ -9,7 +9,7 @@ typedef std::unique_ptr<void, std::function<void(void *)>> DLL;
 
 static DLL load_dll(const char *data_name, size_t arch_bits, size_t address_bits) {
 	std::ostringstream dll_path;
-	dll_path << "data/" << data_name << "-" << arch_bits << "-" << address_bits << ".dylib";
+	dll_path << "data/" << data_name << "-ppc" << arch_bits << "-addr" << address_bits << ".dylib";
 	
 	return DLL(dlopen(dll_path.str().c_str(), RTLD_NOW), dlclose);
 }

@@ -1,8 +1,8 @@
 TESTS_32 := blr empty
 TESTS_64 := $(TESTS_32)
-TESTS := $(foreach test,$(TESTS_32),$(test)-32) $(foreach test,$(TESTS_64),$(test)-64)
+TESTS := $(foreach test,$(TESTS_32),$(test)-ppc32) $(foreach test,$(TESTS_64),$(test)-ppc64)
 BIN_FILES := $(foreach test,$(TESTS),$(test).bin)
-TEST_PERMS := $(foreach test,$(TESTS),$(test)-32 $(test)-64)
+TEST_PERMS := $(foreach test,$(TESTS),$(test)-addr32 $(test)-addr64)
 DLL_FILES := $(foreach test,$(TEST_PERMS),$(test).dylib)
 LL_FILES := $(foreach test,$(TEST_PERMS),$(test).ll)
 TRANSLATE := $(BUILT_PRODUCTS_DIR)/translate
@@ -12,25 +12,25 @@ all: $(BIN_FILES) $(DLL_FILES) $(LL_FILES)
 clean:
 	rm -f $(BIN_FILES) $(DLL_FILES) $(LL_FILES)
 
-%-32.o: %.s
+%-ppc32.o: %.s
 	$(LLVM_DIR)/bin/llvm-mc -arch ppc32 -filetype obj $< -o $@
 
-%-64.o: %.s
+%-ppc64.o: %.s
 	$(LLVM_DIR)/bin/llvm-mc -arch ppc64 -filetype obj $< -o $@
 
 %.bin: %.o
 	gobjcopy --strip-all --output-target binary $< $@
 
-%-32-32.ll: %-32.bin $(TRANSLATE)
+%-ppc32-addr32.ll: %-ppc32.bin $(TRANSLATE)
 	$(TRANSLATE) 32 32 $< $@
 
-%-32-64.ll: %-32.bin $(TRANSLATE)
+%-ppc32-addr64.ll: %-ppc32.bin $(TRANSLATE)
 	$(TRANSLATE) 32 64 $< $@
 
-%-64-32.ll: %-64.bin $(TRANSLATE)
+%-ppc64-addr32.ll: %-ppc64.bin $(TRANSLATE)
 	$(TRANSLATE) 64 32 $< $@
 
-%-64-64.ll: %-64.bin $(TRANSLATE)
+%-ppc64-addr64.ll: %-ppc64.bin $(TRANSLATE)
 	$(TRANSLATE) 64 64 $< $@
 
 %.dylib: %.ll
