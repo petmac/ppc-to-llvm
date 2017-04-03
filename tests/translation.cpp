@@ -1,3 +1,4 @@
+#include "data.h"
 #include "files.h"
 
 #include "ppc-to-llvm/ppc-to-llvm.h"
@@ -47,4 +48,4 @@ TEST_P(Translation, succeeds) {
 	ASSERT_TRUE(translate(translated, disassembly, arch));
 }
 
-INSTANTIATE_TEST_CASE_P(, Translation, testing::Combine(testing::Values("blr"), testing::Values(b32, b64), testing::Values(b32, b64)));
+INSTANTIATE_TEST_CASE_P(, Translation, testing::Combine(testing::ValuesIn(data_names), testing::Values(b32, b64), testing::Values(b32, b64)));

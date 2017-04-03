@@ -1,3 +1,4 @@
+#include "data.h"
 #include "files.h"
 #include "state.h"
 
@@ -49,7 +50,6 @@ protected:
 		State state = {};
 		state.pc = 0x80000000; // TODO Get this from somewhere.
 		(*run)(&state);
-		ASSERT_EQ(state.pc, 0x80000000);
 	}
 };
 
@@ -78,4 +78,4 @@ TEST_P(CorrectnessTests, matches_expected) {
 	}
 }
 
-INSTANTIATE_TEST_CASE_P(, CorrectnessTests, testing::Combine(testing::Values("empty"), testing::Values(32, 64), testing::Values(32, 64)));
+INSTANTIATE_TEST_CASE_P(, CorrectnessTests, testing::Combine(testing::ValuesIn(data_names), testing::Values(32, 64), testing::Values(32, 64)));
