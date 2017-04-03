@@ -10,7 +10,7 @@
 #include <memory>
 #include <sstream>
 
-class CorrectnessTests : public testing::TestWithParam<std::tuple<const char *, size_t, size_t>> {
+class Runtime : public testing::TestWithParam<std::tuple<const char *, size_t, size_t>> {
 public:
 	
 	virtual void SetUp() {
@@ -53,7 +53,7 @@ protected:
 	}
 };
 
-TEST_P(CorrectnessTests, matches_expected) {
+TEST_P(Runtime, matches_expected) {
 	const size_t arch_bits = std::get<1>(GetParam());
 	const size_t address_bits = std::get<2>(GetParam());
 	
@@ -78,4 +78,4 @@ TEST_P(CorrectnessTests, matches_expected) {
 	}
 }
 
-INSTANTIATE_TEST_CASE_P(, CorrectnessTests, testing::Combine(testing::ValuesIn(data_names), testing::Values(32, 64), testing::Values(32, 64)));
+INSTANTIATE_TEST_CASE_P(, Runtime, testing::Combine(testing::ValuesIn(data_names), testing::Values(32, 64), testing::Values(32, 64)));
