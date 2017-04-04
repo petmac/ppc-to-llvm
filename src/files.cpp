@@ -19,14 +19,15 @@ std::vector<char> load_binary_file(const char *path) {
 	return buffer;
 }
 
-std::string load_text_file(const char *path) {
+bool load_text_file(std::string &out, const char *path) {
 	std::ifstream file(path);
 	if (file.fail()) {
-		throw std::runtime_error("File open failed.");
+		return false;
 	}
 	
 	std::ostringstream buffer;
 	buffer << file.rdbuf();
 	
-	return buffer.str();
+	out = buffer.str();
+	return true;
 }

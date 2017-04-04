@@ -37,17 +37,17 @@ static DLL load_dll(const char *data_name, size_t arch_bits, size_t address_bits
 static std::string load_expected_state(const char *data_name, size_t arch_bits, size_t address_bits) {
 	const char *const suffix = "-state.txt";
 	const std::string arch_address_path = build_path(data_name, arch_bits, address_bits, suffix);
-	try {
-		return load_text_file(arch_address_path.c_str());
-	} catch (const std::runtime_error &) {
-		const std::string arch_path = build_path(data_name, arch_bits, suffix);
-		try {
-			return load_text_file(arch_path.c_str());
-		} catch (const std::runtime_error &) {
-			const std::string path = build_path(data_name, suffix);
-			return load_text_file(path.c_str());
-		}
+	const std::string arch_path = build_path(data_name, arch_bits, suffix);
+	const std::string generic_path = build_path(data_name, suffix);
+	
+	std::string out;
+	if (load_text_file(out, arch_address_path.c_str()) ||
+		load_text_file(out, arch_path.c_str()) ||
+		load_text_file(out, generic_path.c_str())) {
+		return out;
 	}
+	
+	throw std::runtime_error("Couldn't load expected state file.");
 }
 
 static std::string test_name(const testing::TestParamInfo<const char *> &param) {
