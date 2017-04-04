@@ -19,13 +19,13 @@ static std::string build_path(const char *data_name, const char *suffix) {
 
 static std::string build_path(const char *data_name, size_t arch_bits, const char *suffix) {
 	std::ostringstream path;
-	path << data_dir << data_name << "-ppc" << arch_bits << suffix;
+	path << build_path(data_name, "") << "-ppc" << arch_bits << suffix;
 	return path.str();
 }
 
 static std::string build_path(const char *data_name, size_t arch_bits, size_t address_bits, const char *suffix) {
 	std::ostringstream path;
-	path << data_dir << data_name << "-ppc" << arch_bits << "-addr" << address_bits << suffix;
+	path << build_path(data_name, arch_bits, "") << "-addr" << address_bits << suffix;
 	return path.str();
 }
 
