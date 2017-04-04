@@ -9,36 +9,16 @@
 
 typedef std::unique_ptr<void, std::function<void(void *)>> DLL;
 
-static const char data_dir[] = "data/";
-
-static std::string build_path(const char *data_name, const char *suffix) {
-	std::ostringstream path;
-	path << data_dir << data_name << suffix;
-	return path.str();
-}
-
-static std::string build_path(const char *data_name, size_t arch_bits, const char *suffix) {
-	std::ostringstream path;
-	path << build_path(data_name, "") << "-ppc" << arch_bits << suffix;
-	return path.str();
-}
-
-static std::string build_path(const char *data_name, size_t arch_bits, size_t address_bits, const char *suffix) {
-	std::ostringstream path;
-	path << build_path(data_name, arch_bits, "") << "-addr" << address_bits << suffix;
-	return path.str();
-}
-
-static DLL load_dll(const char *data_name, size_t arch_bits, size_t address_bits) {
-	const std::string path = build_path(data_name, arch_bits, address_bits, ".dylib");
+static DLL load_dll(const char *name, size_t arch_bits, size_t address_bits) {
+	const std::string path = build_path(name, arch_bits, address_bits, ".dylib");
 	return DLL(dlopen(path.c_str(), RTLD_NOW), dlclose);
 }
 
-static std::string load_expected_state(const char *data_name, size_t arch_bits, size_t address_bits) {
+static std::string load_expected_state(const char *name, size_t arch_bits, size_t address_bits) {
 	const char *const suffix = "-state.txt";
-	const std::string arch_address_path = build_path(data_name, arch_bits, address_bits, suffix);
-	const std::string arch_path = build_path(data_name, arch_bits, suffix);
-	const std::string generic_path = build_path(data_name, suffix);
+	const std::string arch_address_path = build_path(name, arch_bits, address_bits, suffix);
+	const std::string arch_path = build_path(name, arch_bits, suffix);
+	const std::string generic_path = build_path(name, suffix);
 	
 	std::string out;
 	if (load_text_file(out, arch_address_path.c_str()) ||
