@@ -1,5 +1,4 @@
-#include "files.h"
-
+#include "ppc-to-llvm/files.h"
 #include "ppc-to-llvm/ppc-to-llvm.h"
 
 #include <iostream>
