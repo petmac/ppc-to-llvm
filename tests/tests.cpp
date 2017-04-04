@@ -1,17 +1,53 @@
 #include "data.h"
 #include "state.h"
 
+#include "ppc-to-llvm/files.h"
+
 #include "gtest/gtest.h"
 
 #include <dlfcn.h>
 
 typedef std::unique_ptr<void, std::function<void(void *)>> DLL;
 
+static const char data_dir[] = "data/";
+
+static std::string build_path(const char *data_name, const char *suffix) {
+	std::ostringstream path;
+	path << data_dir << data_name << suffix;
+	return path.str();
+}
+
+static std::string build_path(const char *data_name, size_t arch_bits, const char *suffix) {
+	std::ostringstream path;
+	path << data_dir << data_name << "-ppc" << arch_bits << suffix;
+	return path.str();
+}
+
+static std::string build_path(const char *data_name, size_t arch_bits, size_t address_bits, const char *suffix) {
+	std::ostringstream path;
+	path << data_dir << data_name << "-ppc" << arch_bits << "-addr" << address_bits << suffix;
+	return path.str();
+}
+
 static DLL load_dll(const char *data_name, size_t arch_bits, size_t address_bits) {
-	std::ostringstream dll_path;
-	dll_path << "data/" << data_name << "-ppc" << arch_bits << "-addr" << address_bits << ".dylib";
-	
-	return DLL(dlopen(dll_path.str().c_str(), RTLD_NOW), dlclose);
+	const std::string path = build_path(data_name, arch_bits, address_bits, ".dylib");
+	return DLL(dlopen(path.c_str(), RTLD_NOW), dlclose);
+}
+
+static std::string load_expected_state(const char *data_name, size_t arch_bits, size_t address_bits) {
+	const char *const suffix = "-state.txt";
+	const std::string arch_address_path = build_path(data_name, arch_bits, address_bits, suffix);
+	try {
+		return load_text_file(arch_address_path.c_str());
+	} catch (const std::runtime_error &) {
+		const std::string arch_path = build_path(data_name, arch_bits, suffix);
+		try {
+			return load_text_file(arch_path.c_str());
+		} catch (const std::runtime_error &) {
+			const std::string path = build_path(data_name, suffix);
+			return load_text_file(path.c_str());
+		}
+	}
 }
 
 static std::string test_name(const testing::TestParamInfo<const char *> &param) {
@@ -32,6 +68,10 @@ static void test(const char *data_name, size_t arch_bits, size_t address_bits) {
 	State state = {};
 	state.pc = 0x80000000; // TODO Get this from somewhere.
 	(*run)(&state);
+	
+	const std::string actual_state = to_string(state);
+	const std::string expected_state = load_expected_state(data_name, arch_bits, address_bits);
+	ASSERT_EQ(actual_state, expected_state);
 }
 
 class Tests : public testing::TestWithParam<const char *> {
