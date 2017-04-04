@@ -45,7 +45,7 @@ static bool translate_instruction(std::ostream &out, const cs_insn &insn, const 
 	return true;
 }
 
-static bool output_instructions(std::ostream &out, const Disassembly &disassembly, const char *address_type) {
+static bool translate_instructions(std::ostream &out, const Disassembly &disassembly, const char *address_type) {
 	for (size_t insn_index = 0; insn_index < disassembly.insn_count; ++insn_index) {
 		const cs_insn &insn = disassembly.insn.get()[insn_index];
 		out << "insn" << insn_index << ": ; " << insn.mnemonic;
@@ -85,7 +85,7 @@ static bool output_run(std::ostream &out, const Disassembly &disassembly, const 
 		out << "exit:" << std::endl;
 		out << indent << "ret void" << std::endl;
 		
-		if (!output_instructions(out, disassembly, arch.address_type.c_str())) {
+		if (!translate_instructions(out, disassembly, arch.address_type.c_str())) {
 			return false;
 		}
 	} else {
