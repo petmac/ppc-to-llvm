@@ -78,16 +78,16 @@ static bool output_run(std::ostream &out, const Disassembly &disassembly, const 
 		out << "loop:" << std::endl;
 		output_switch(out, disassembly, arch.address_type.c_str());
 		
-		out << "badpc:" << std::endl;
-		out << indent << "call void @llvm.debugtrap()" << std::endl;
-		out << indent << "ret void" << std::endl;
+		if (!translate_instructions(out, disassembly, arch.address_type.c_str())) {
+			return false;
+		}
 		
 		out << "exit:" << std::endl;
 		out << indent << "ret void" << std::endl;
 		
-		if (!translate_instructions(out, disassembly, arch.address_type.c_str())) {
-			return false;
-		}
+		out << "badpc:" << std::endl;
+		out << indent << "call void @llvm.debugtrap()" << std::endl;
+		out << indent << "ret void" << std::endl;
 	} else {
 		out << indent << "ret void" << std::endl;
 	}
