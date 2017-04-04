@@ -40,6 +40,7 @@ static void output_switch(std::ostream &out, const Disassembly &disassembly, con
 static bool translate_instruction(std::ostream &out, const cs_insn &insn, const char *address_type) {
 	const uint64_t next_insn_address = insn.address + insn.size;
 	out << indent << "store " << address_type << " " << next_insn_address << ", " << address_type << "* %pc" << std::endl;
+	out << indent << "br label %loop" << std::endl;
 	
 	return true;
 }
@@ -51,7 +52,6 @@ static bool output_instructions(std::ostream &out, const Disassembly &disassembl
 		if (!translate_instruction(out, insn, address_type)) {
 			return false;
 		}
-		out << indent << "br label %loop" << std::endl;
 	}
 	
 	return true;
