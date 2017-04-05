@@ -9,6 +9,7 @@
 #include <sstream>
 
 typedef std::function<std::string()> ValueFn;
+typedef void OpFn(std::ostream &, const cs_ppc_op *, size_t);
 
 struct TranslateArch {
 	std::string arch_type;
@@ -47,11 +48,20 @@ static void output_switch(std::ostream &out, const Disassembly &disassembly, con
 }
 
 static bool translate_instruction(std::ostream &out, const cs_insn &insn, const char *address_type) {
-	switch (insn.id) {
-#define OP(id) case PPC_INS_##id: op_##id(out); break;
+	const ppc_insn id = static_cast<ppc_insn>(insn.id);
+	const OpFn *op_fn = nullptr;
+	switch (id) {
+#define OP(id) case PPC_INS_##id: op_fn = &op_##id; break;
 #include "ops.h"
 #undef OP
 	}
+	
+	if (op_fn == nullptr) {
+		return false;
+	}
+	
+	const cs_ppc &ppc = insn.detail->ppc;
+	(*op_fn)(out, ppc.operands, ppc.op_count);
 	
 	const uint64_t next_insn_address = insn.address + insn.size;
 	out << indent << "store " << address_type << " " << next_insn_address << ", " << address_type << "* %pc" << std::endl;
