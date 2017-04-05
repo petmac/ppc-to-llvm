@@ -22,17 +22,20 @@ static void output_declarations(std::ostream &out, const TranslateArch &arch) {
 }
 
 static void output_switch(std::ostream &out, const Disassembly &disassembly, const char *address_type) {
-	const std::string pc = "%1";
+	const char pc[] = "%pc_";
+	const char pc_relative_to_bin[] = "%pc_offset";
+	const char insn_index[] = "%insn_index";
+	
 	out << indent << pc << " = load " << address_type << ", " << address_type << "* %pc" << std::endl;
-	out << indent << "switch " << address_type << " " << pc << ", label %badpc [";
+	out << indent << pc_relative_to_bin << " = sub " << address_type << " " << pc << ", " << disassembly.insn->address << std::endl;
+	out << indent << insn_index << " = udiv " << address_type << " " << pc_relative_to_bin << ", 4" << std::endl;
+	out << indent << "switch " << address_type << " " << insn_index << ", label %badpc [";
 	
 	for (size_t insn_index = 0; insn_index < disassembly.insn_count; ++insn_index) {
-		const cs_insn &insn = disassembly.insn.get()[insn_index];
-		out << address_type << " " << insn.address << ", label %insn" << insn_index << " ";
+		out << address_type << " " << insn_index << ", label %insn" << insn_index << " ";
 	}
 	
-	const cs_insn &last_insn = disassembly.insn.get()[disassembly.insn_count - 1];
-	out << address_type << " " << (last_insn.address + last_insn.size) << ", label %exit";
+	out << address_type << " " << disassembly.insn_count << ", label %exit";
 	
 	out << "]" << std::endl;
 }
