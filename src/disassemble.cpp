@@ -18,7 +18,12 @@ static void close_capstone(csh *csp) {
 Disassembly disassemble(const void *binary, size_t binary_size, uint64_t address, const Arch &arch) {
 	const Capstone cs(new csh(0), &close_capstone);
 	const cs_mode mode = static_cast<cs_mode>(bits_to_mode.at(arch.arch_bits) | CS_MODE_BIG_ENDIAN);
-	const cs_err err = cs_open(CS_ARCH_PPC, mode, cs.get());
+	cs_err err = cs_open(CS_ARCH_PPC, mode, cs.get());
+	if (err != CS_ERR_OK) {
+		return Disassembly();
+	}
+	
+	err = cs_option(*cs, CS_OPT_DETAIL, CS_OPT_ON);
 	if (err != CS_ERR_OK) {
 		return Disassembly();
 	}
