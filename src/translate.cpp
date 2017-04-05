@@ -113,12 +113,12 @@ static bool output_run(std::ostream &out, const Disassembly &disassembly, const 
 	return true;
 }
 
-static const std::map<Bits, const char *> bits_to_type = {
-	{ b32, "i32" },
-	{ b64, "i64" },
-};
-
 bool translate(std::ostream &out, const Disassembly &disassembly, const Arch &arch) {
+	const std::map<Bits, const char *> bits_to_type = {
+		{ b32, "i32" },
+		{ b64, "i64" },
+	};
+	
 	TranslateArch translate_arch;
 	translate_arch.arch_type = bits_to_type.at(arch.arch_bits);
 	translate_arch.address_type = bits_to_type.at(arch.address_bits);
