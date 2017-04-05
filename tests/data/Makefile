@@ -34,4 +34,4 @@ clean:
 	$(TRANSLATE) 64 64 $< $@
 
 %.dylib: %.ll
-	clang -dynamiclib -Wno-override-module -o $@ $<
+	clang -O1 -dynamiclib -Wno-override-module -o $@ $<
