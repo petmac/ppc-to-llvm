@@ -1,5 +1,7 @@
 #include "ppc-to-llvm/ppc-to-llvm.h"
 
+#include "op.h"
+
 #include <capstone/capstone.h>
 
 #include <functional>
@@ -45,6 +47,12 @@ static void output_switch(std::ostream &out, const Disassembly &disassembly, con
 }
 
 static bool translate_instruction(std::ostream &out, const cs_insn &insn, const char *address_type) {
+	switch (insn.id) {
+#define OP(id) case PPC_INS_##id: op_##id(out); break;
+#include "ops.h"
+#undef OP
+	}
+	
 	const uint64_t next_insn_address = insn.address + insn.size;
 	out << indent << "store " << address_type << " " << next_insn_address << ", " << address_type << "* %pc" << std::endl;
 	out << indent << "br label %loop" << std::endl;

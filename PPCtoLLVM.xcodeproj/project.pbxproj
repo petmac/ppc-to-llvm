@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B217BE081E955C1500EAA303 /* op.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B217BE061E955C1500EAA303 /* op.cpp */; };
+		B217BE091E955C1500EAA303 /* op.h in Headers */ = {isa = PBXBuildFile; fileRef = B217BE071E955C1500EAA303 /* op.h */; };
 		B22BD46D1E858B070056A702 /* translate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B22BD46C1E858B070056A702 /* translate.cpp */; };
 		B22BD4711E858CEB0056A702 /* libtranslation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BF1AC81E768E2500F766EA /* libtranslation.a */; };
 		C1059D521E84836A008A777B /* tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1059D511E84836A008A777B /* tests.cpp */; };
@@ -58,6 +60,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B217BE051E955B2E00EAA303 /* ops.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ops.h; sourceTree = "<group>"; };
+		B217BE061E955C1500EAA303 /* op.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = op.cpp; sourceTree = "<group>"; };
+		B217BE071E955C1500EAA303 /* op.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = op.h; sourceTree = "<group>"; };
 		B22BD46A1E858B070056A702 /* translate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = translate; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22BD46C1E858B070056A702 /* translate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = translate.cpp; sourceTree = "<group>"; };
 		C1059D511E84836A008A777B /* tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tests.cpp; sourceTree = "<group>"; };
@@ -118,6 +123,9 @@
 			children = (
 				C1BF1ADA1E771B5B00F766EA /* disassemble.cpp */,
 				C17110771E936A030085805B /* files.cpp */,
+				B217BE061E955C1500EAA303 /* op.cpp */,
+				B217BE071E955C1500EAA303 /* op.h */,
+				B217BE051E955B2E00EAA303 /* ops.h */,
 				C1BF1AD61E768EB700F766EA /* translate.cpp */,
 			);
 			path = src;
@@ -181,6 +189,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B217BE091E955C1500EAA303 /* op.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +338,7 @@
 			files = (
 				C17110791E936AA80085805B /* files.cpp in Sources */,
 				C1BF1ADC1E771B5B00F766EA /* disassemble.cpp in Sources */,
+				B217BE081E955C1500EAA303 /* op.cpp in Sources */,
 				C1BF1AD81E768EB700F766EA /* translate.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
