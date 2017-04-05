@@ -3,7 +3,7 @@
 #include <sstream>
 
 const std::vector<const char *> data_names = {
-	"blr", "empty"
+	"empty", "li"
 };
 
 std::string build_path(const char *name, const char *suffix) {

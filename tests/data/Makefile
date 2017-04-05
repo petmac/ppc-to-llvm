@@ -1,4 +1,4 @@
-TESTS_32 := blr empty
+TESTS_32 := empty li
 TESTS_64 := $(TESTS_32)
 TESTS := $(foreach test,$(TESTS_32),$(test)-ppc32) $(foreach test,$(TESTS_64),$(test)-ppc64)
 BIN_FILES := $(foreach test,$(TESTS),$(test).bin)
