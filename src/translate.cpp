@@ -2,7 +2,11 @@
 
 #include <capstone/capstone.h>
 
+#include <functional>
 #include <map>
+#include <sstream>
+
+typedef std::function<std::string()> ValueFn;
 
 struct TranslateArch {
 	std::string arch_type;
@@ -21,10 +25,10 @@ static void output_declarations(std::ostream &out, const TranslateArch &arch) {
 	out << " }" << std::endl;
 }
 
-static void output_switch(std::ostream &out, const Disassembly &disassembly, const char *address_type) {
-	const char pc[] = "%pc_";
-	const char pc_relative_to_bin[] = "%pc_offset";
-	const char insn_index[] = "%insn_index";
+static void output_switch(std::ostream &out, const Disassembly &disassembly, const char *address_type, const ValueFn &value) {
+	const std::string pc = value();
+	const std::string pc_relative_to_bin = value();
+	const std::string insn_index = value();
 	
 	out << indent << pc << " = load " << address_type << ", " << address_type << "* %pc" << std::endl;
 	out << indent << pc_relative_to_bin << " = sub " << address_type << " " << pc << ", " << disassembly.insn->address << std::endl;
@@ -73,13 +77,22 @@ static void output_register_ptrs(std::ostream &out, const char *prefix, const ch
 
 static bool output_run(std::ostream &out, const Disassembly &disassembly, const TranslateArch &arch) {
 	out << "define dllexport void @run(%State* %state) {" << std::endl;
+	out << "entry:" << std::endl;
 	if (disassembly.insn_count > 0) {
 		output_register_ptrs(out, "r", arch.arch_type.c_str(), 0, R_COUNT);
 		out << indent << "%pc = getelementptr inbounds %State, %State* %state, i32 0, i32 1" << std::endl;
 		out << indent << "br label %loop" << std::endl;
 		
+		size_t next_value = 0;
+		const ValueFn value = [&next_value]() {
+			std::ostringstream str;
+			str << "%" << next_value++;
+			
+			return str.str();
+		};
+		
 		out << "loop:" << std::endl;
-		output_switch(out, disassembly, arch.address_type.c_str());
+		output_switch(out, disassembly, arch.address_type.c_str(), value);
 		
 		if (!translate_instructions(out, disassembly, arch.address_type.c_str())) {
 			return false;
