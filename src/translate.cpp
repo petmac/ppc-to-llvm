@@ -9,7 +9,7 @@
 #include <sstream>
 
 typedef std::function<std::string()> ValueFn;
-typedef void OpFn(std::ostream &, const cs_ppc_op *, size_t);
+typedef void OpFn(std::ostream &, const cs_ppc_op *, size_t, const char *);
 
 struct TranslateArch {
 	std::string arch_type;
@@ -47,9 +47,9 @@ static void output_switch(std::ostream &out, const Disassembly &disassembly, con
 	out << "]" << std::endl;
 }
 
-static bool translate_instruction(std::ostream &out, const cs_insn &insn, const char *address_type) {
+static bool translate_instruction(std::ostream &out, const cs_insn &insn, const TranslateArch &arch) {
 	const ppc_insn id = static_cast<ppc_insn>(insn.id);
-	const OpFn *op_fn = nullptr;
+	OpFn *op_fn = nullptr;
 	switch (id) {
 #define OP(id) case PPC_INS_##id: op_fn = &op_##id; break;
 #include "ops.h"
@@ -61,16 +61,16 @@ static bool translate_instruction(std::ostream &out, const cs_insn &insn, const 
 	}
 	
 	const cs_ppc &ppc = insn.detail->ppc;
-	(*op_fn)(out, ppc.operands, ppc.op_count);
+	(*op_fn)(out, ppc.operands, ppc.op_count, arch.arch_type.c_str());
 	
 	const uint64_t next_insn_address = insn.address + insn.size;
-	out << indent << "store " << address_type << " " << next_insn_address << ", " << address_type << "* %pc" << std::endl;
+	out << indent << "store " << arch.address_type << " " << next_insn_address << ", " << arch.address_type << "* %pc" << std::endl;
 	out << indent << "br label %loop" << std::endl;
 	
 	return true;
 }
 
-static bool translate_instructions(std::ostream &out, const Disassembly &disassembly, const char *address_type) {
+static bool translate_instructions(std::ostream &out, const Disassembly &disassembly, const TranslateArch &arch) {
 	for (size_t insn_index = 0; insn_index < disassembly.insn_count; ++insn_index) {
 		const cs_insn &insn = disassembly.insn.get()[insn_index];
 		out << "insn" << insn_index << ": ; " << insn.mnemonic;
@@ -78,7 +78,7 @@ static bool translate_instructions(std::ostream &out, const Disassembly &disasse
 			out << " " << insn.op_str;
 		}
 		out << std::endl;
-		if (!translate_instruction(out, insn, address_type)) {
+		if (!translate_instruction(out, insn, arch)) {
 			return false;
 		}
 	}
@@ -112,7 +112,7 @@ static bool output_run(std::ostream &out, const Disassembly &disassembly, const 
 		out << "loop:" << std::endl;
 		output_switch(out, disassembly, arch.address_type.c_str(), value);
 		
-		if (!translate_instructions(out, disassembly, arch.address_type.c_str())) {
+		if (!translate_instructions(out, disassembly, arch)) {
 			return false;
 		}
 		
